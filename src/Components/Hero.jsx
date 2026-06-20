@@ -14,28 +14,28 @@ function useWidth() {
 
 const slides = [
   {
-    image: "/images/welcome.png",
+    image: "/images/hero1.png",
     eyebrow: "Welcome to",
     title: ["Zoe", "School of", "Mysteries"],
     subtitle:
       "A divine learning ecosystem where the mysteries of Christ are unveiled, the life of God is cultivated, and believers are equipped to manifest Heaven's realities on the earth.",
   },
   {
-    image: "/images/zoe.png",
+    image: "/images/hero2.png",
     eyebrow: "The Life of God",
     title: ["Awaken", "To Zoe", "& Glory"],
     subtitle:
       "Journey beyond religion into the experiential knowledge of God, where His life flows through you, transforming your spirit, soul, and body into a vessel of His manifest presence.",
   },
   {
-    image: "/images/wisdom.png",
+    image: "/images/hero3.png",
     eyebrow: "Ancient Paths of Wisdom",
     title: ["Unlock", "Kingdom", "Mysteries"],
     subtitle:
       "Receive revelation, wisdom, and spiritual understanding that activate purpose, illuminate destiny, and empower victorious living in every sphere of influence.",
   },
   {
-    image: "/images/serve2.png",
+    image: "/images/hero4.png",
     eyebrow: "A Company of Saints",
     title: ["Manifest", "Christ", "To Nations"],
     subtitle:

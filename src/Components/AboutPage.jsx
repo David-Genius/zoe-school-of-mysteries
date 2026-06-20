@@ -958,7 +958,7 @@ export default function AboutPage() {
                 border: "1px solid rgba(255,255,255,0.1)",
                 boxShadow: "0 30px 100px rgba(0,0,0,0.75)",
               }}>
-                <img className="ab-img" src="/images/Website Banner Expansion.png" alt="Kingdom impact" style={{ transform: "scale(1.05)" }} />
+                <img className="ab-img" src="/images/web.png" alt="Kingdom impact" style={{ transform: "scale(1.05)" }} />
                 <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(0,0,0,0.6), transparent 60%)" }} />
               </div>
 
