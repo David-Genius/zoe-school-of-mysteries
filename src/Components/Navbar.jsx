@@ -10,6 +10,9 @@ import {
 import { SiTiktok } from "react-icons/si";
 import { RiThreadsFill } from "react-icons/ri";
 import { MdLocationOn, MdPhone } from "react-icons/md";
+// import { useTheme } from "../ThemeContext";  // no extension needed
+
+
 
 const navLinks = [
   { label: "Give",    navigate: "give"    },
@@ -150,6 +153,7 @@ export default function Navbar({ logo, user, onUserIconClick, onLogout, onNaviga
   const isMobile = width < 768;
   const searchRef = useRef(null);
   const userRef   = useRef(null);
+  // const { darkMode, setDarkMode } = useTheme();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -243,6 +247,16 @@ export default function Navbar({ logo, user, onUserIconClick, onLogout, onNaviga
     transform: none;
     max-height: calc(100vh - 150px);   /* ← fills remaining screen */
   }
+
+
+  .top-tab-bar {
+    overflow-x: hidden;
+  }
+
+  .tab-item {
+    flex: 1;
+    min-width: 0;
+  }
 }
         .search-dropdown::-webkit-scrollbar { width:3px; }
         .search-dropdown::-webkit-scrollbar-thumb { background:rgba(245,168,0,0.15); border-radius:2px; }
@@ -298,7 +312,11 @@ export default function Navbar({ logo, user, onUserIconClick, onLogout, onNaviga
         .my-portal-box { background:rgba(255,255,255,0.03); border:1px solid rgba(245,168,0,0.1); border-radius:6px; padding:14px; margin:0 18px 6px; }
         .portal-btn { display:inline-flex; align-items:center; gap:6px; margin-top:10px; padding:9px 16px; background:rgba(255,255,255,0.07); border:1px solid rgba(255,255,255,0.12); border-radius:4px; font-family:'Rajdhani',sans-serif; font-size:11px; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,0.7); cursor:pointer; transition:all 0.3s; text-decoration:none; }
         .portal-btn:hover { border-color:#F5A800; color:#F5A800; }
-
+// .top-tab-bar {
+//   display: flex;
+//   justify-content: space-between;
+//   overflow-x: auto;
+// }
         .top-tab-bar {
           position:fixed; top:76px; left:0; right:0; height:54px; z-index:998;
           background:rgba(8,8,8,0.98); backdrop-filter:blur(20px);
@@ -307,7 +325,27 @@ export default function Navbar({ logo, user, onUserIconClick, onLogout, onNaviga
           -webkit-overflow-scrolling:touch; scrollbar-width:none; padding:0 4px;
         }
         .top-tab-bar::-webkit-scrollbar { display:none; }
-        .tab-item { display:flex; flex-direction:column; align-items:center; justify-content:center; gap:4px; padding:10px 16px 12px; min-width:70px; cursor:pointer; text-decoration:none; transition:all 0.2s; flex-shrink:0; border-bottom:2px solid transparent; }
+        .tab-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  padding: 10px 12px 12px;
+  min-width: unset;
+  width: fit-content;
+  flex-shrink: 0;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.2s;
+  border-bottom: 2px solid transparent;
+}
+
+// .tab-item {
+//   min-width: fit-content;
+//   padding: 10px 14px;
+//   flex-shrink: 0;
+// }
         .tab-item:hover, .tab-item.active { border-bottom-color:#F5A800; }
         .tab-item:hover .tab-label, .tab-item.active .tab-label { color:#F5A800; }
         .tab-item:hover svg, .tab-item.active svg { color:#F5A800; stroke:#F5A800; }

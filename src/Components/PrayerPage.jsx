@@ -59,11 +59,11 @@ const CATEGORIES = [
   { id: "other",        label: "Other",           icon: "💬", color: "#ec4899",  desc: "Any other prayer need"                  },
 ];
 
-const TESTIMONIES = [
-  { name: "Sister Amaka", category: "Healing",     text: "I submitted a prayer request for my mother's cancer diagnosis in January. By March, her scans came back clean. The doctors called it unexplainable. I call it God.", time: "2 months ago" },
-  { name: "Brother Felix", category: "Finances",   text: "I was three months behind on rent and had no job. Within two weeks of submitting my request, I got three job offers and paid everything off. God is faithful.", time: "6 weeks ago" },
-  { name: "Sis. Ngozi",   category: "Family",      text: "My husband and I were on the verge of divorce. I sent in a prayer request anonymously. Something shifted. We went for counselling. Today we are stronger than ever.", time: "3 months ago" },
-];
+// const TESTIMONIES = [
+//   { name: "Sister Amaka", category: "Healing",     text: "I submitted a prayer request for my mother's cancer diagnosis in January. By March, her scans came back clean. The doctors called it unexplainable. I call it God.", time: "2 months ago" },
+//   { name: "Brother Felix", category: "Finances",   text: "I was three months behind on rent and had no job. Within two weeks of submitting my request, I got three job offers and paid everything off. God is faithful.", time: "6 weeks ago" },
+//   { name: "Sis. Ngozi",   category: "Family",      text: "My husband and I were on the verge of divorce. I sent in a prayer request anonymously. Something shifted. We went for counselling. Today we are stronger than ever.", time: "3 months ago" },
+// ];
 
 export default function PrayerPage({ user, onNavigate }) {
   const width    = useWidth();
@@ -370,7 +370,12 @@ setStep(3);
           <div style={{ display:"flex", borderBottom:"1px solid rgba(255,255,255,0.07)", marginBottom:40 }}>
             <button className={`pr-tab ${activeTab==="submit"?"active":""}`} onClick={()=>setActiveTab("submit")}>Submit Request</button>
             <button className={`pr-tab ${activeTab==="mine"?"active":""}`} onClick={()=>setActiveTab("mine")}>My Requests</button>
-            <button className={`pr-tab ${activeTab==="testimonies"?"active":""}`} onClick={()=>setActiveTab("testimonies")}>Testimonies</button>
+            <button
+  className={`pr-tab ${activeTab==="resources"?"active":""}`}
+  onClick={()=>setActiveTab("resources")}
+>
+  Prayer Resources
+</button>
           </div>
 
           {/* ════ TAB 1: SUBMIT ════ */}
@@ -598,45 +603,138 @@ setStep(3);
           )}
 
           {/* ════ TAB 3: TESTIMONIES ════ */}
-          {activeTab === "testimonies" && (
-            <div style={{ maxWidth:720, margin:"0 auto" }}>
-              <div style={{ marginBottom:36 }}>
-                <div className="pr-eyebrow"><span className="pr-eyebrow-line" />God Answers Prayer</div>
-                <h2 style={{ fontFamily:"Cinzel,serif", fontSize:isMobile?24:36, fontWeight:700, color:"#fff", marginBottom:12 }}>Prayer Testimonies</h2>
-                <p style={{ fontFamily:"Cormorant Garamond,serif", fontSize:17, fontStyle:"italic", color:"rgba(255,255,255,0.45)", maxWidth:480 }}>
-                  Real stories from real people who submitted prayer requests and received real answers. God is still in the business of miracles.
-                </p>
-              </div>
+          {activeTab === "resources" && (
+  <div style={{ maxWidth: 800, margin: "0 auto" }}>
+    
+    <div style={{ marginBottom: 40 }}>
+      <div className="pr-eyebrow">
+        <span className="pr-eyebrow-line" />
+        Grow in Prayer
+      </div>
 
-              <div style={{ display:"flex", flexDirection:"column", gap:20, marginBottom:48 }}>
-                {TESTIMONIES.map((t,i) => (
-                  <div key={i} className="pr-test-card" style={{ animationDelay:`${i*0.1}s`, animation:"pr-fadeUp 0.5s ease both" }}>
-                    <div style={{ fontSize:28, color:"#9333EA", opacity:0.4, marginBottom:8, fontFamily:"serif", lineHeight:1 }}>"</div>
-                    <p style={{ fontFamily:"Cormorant Garamond,serif", fontSize:isMobile?16:19, fontWeight:400, color:"rgba(255,255,255,0.8)", lineHeight:1.8, marginBottom:20 }}>{t.text}</p>
-                    <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center" }}>
-                      <div>
-                        <div style={{ fontFamily:"Cinzel,serif", fontSize:13, fontWeight:700, color:"#fff" }}>{t.name}</div>
-                        <div style={{ fontFamily:"Rajdhani,sans-serif", fontSize:10, letterSpacing:2, color:"#9333EA", textTransform:"uppercase" }}>{t.category}</div>
-                      </div>
-                      <div style={{ fontFamily:"Rajdhani,sans-serif", fontSize:10, letterSpacing:1, color:"rgba(255,255,255,0.25)" }}>{t.time}</div>
-                    </div>
-                  </div>
-                ))}
-              </div>
+      <h2
+        style={{
+          fontFamily: "Cinzel,serif",
+          fontSize: isMobile ? 24 : 36,
+          fontWeight: 700,
+          color: "#fff",
+          marginBottom: 12,
+        }}
+      >
+        Prayer Resources
+      </h2>
 
-              {/* Share testimony CTA */}
-              <div style={{ background:"linear-gradient(135deg,#0d0014,#000)", border:"1px solid rgba(147,51,234,0.2)", borderRadius:4, padding:`${isMobile?28:40}px`, textAlign:"center" }}>
-                <div style={{ fontSize:36, marginBottom:14 }}>✨</div>
-                <h3 style={{ fontFamily:"Cinzel,serif", fontSize:isMobile?20:26, fontWeight:700, color:"#fff", marginBottom:12 }}>Has God Answered Your Prayer?</h3>
-                <p style={{ fontFamily:"Cormorant Garamond,serif", fontSize:16, fontStyle:"italic", color:"rgba(255,255,255,0.45)", marginBottom:24, maxWidth:400, margin:"0 auto 24px", lineHeight:1.8 }}>
-                  Your testimony could be the faith boost someone else needs right now. Share what God has done.
-                </p>
-                <button onClick={()=>setActiveTab("submit")} style={{ fontFamily:"Cinzel,serif", fontSize:12, letterSpacing:3, textTransform:"uppercase", fontWeight:700, color:"#fff", background:"linear-gradient(135deg,#6B21A8,#9333EA)", border:"none", padding:"14px 36px", borderRadius:2, cursor:"pointer" }}>
-                  Share My Testimony
-                </button>
-              </div>
-            </div>
-          )}
+      <p
+        style={{
+          fontFamily: "Cormorant Garamond,serif",
+          fontSize: 18,
+          fontStyle: "italic",
+          color: "rgba(255,255,255,0.5)",
+          lineHeight: 1.8,
+        }}
+      >
+        Strengthen your prayer life with scripture,
+        guidance, and encouragement.
+      </p>
+    </div>
+
+    <div
+      style={{
+        display: "grid",
+        gridTemplateColumns: isMobile ? "1fr" : "repeat(2,1fr)",
+        gap: 20,
+      }}
+    >
+      {[
+        {
+          icon: "📖",
+          title: "Scriptures on Prayer",
+          text: "Powerful Bible verses to pray and meditate on daily.",
+        },
+        {
+          icon: "🙏",
+          title: "How to Pray",
+          text: "Simple guidance for building a consistent prayer life.",
+        },
+        {
+          icon: "✨",
+          title: "Faith Declarations",
+          text: "Biblical declarations to speak over your life.",
+        },
+        {
+          icon: "🕊️",
+          title: "Prayer for Every Situation",
+          text: "Healing, family, finances, guidance and more.",
+        },
+      ].map((item, i) => (
+        <div
+          key={i}
+          className="pr-req-card"
+          style={{ padding: 24 }}
+        >
+          <div style={{ fontSize: 32, marginBottom: 12 }}>
+            {item.icon}
+          </div>
+
+          <h3
+            style={{
+              fontFamily: "Cinzel,serif",
+              color: "#fff",
+              marginBottom: 10,
+            }}
+          >
+            {item.title}
+          </h3>
+
+          <p
+            style={{
+              fontFamily: "Cormorant Garamond,serif",
+              color: "rgba(255,255,255,0.6)",
+              lineHeight: 1.7,
+            }}
+          >
+            {item.text}
+          </p>
+        </div>
+      ))}
+    </div>
+
+    {/*  */}
+    >
+      {/* <h3
+        style={{
+          fontFamily: "Cinzel,serif",
+          color: "#fff",
+          marginBottom: 10,
+        }}
+      >
+        Prayer of the Week
+      </h3>
+
+      <p
+        style={{
+          fontFamily: "Cormorant Garamond,serif",
+          fontSize: 18,
+          fontStyle: "italic",
+          color: "rgba(255,2<div
+      style={{
+        marginTop: 40,
+        padding: 30,
+        background: "rgba(147,51,234,0.08)",
+        border: "1px solid rgba(147,51,234,0.2)",
+        borderRadius: 4,
+        textAlign: "center",
+      }}55,255,0.75)",
+          lineHeight: 1.8,
+        }}
+      >
+        Father, strengthen our faith, guide our steps,
+        and help us trust You completely in every season.
+        In Jesus' name, Amen.
+      </p> */}
+    {/* </div> */}
+  </div>
+)}
         </section>
 
         {/* ── PROMISE BANNER ── */}

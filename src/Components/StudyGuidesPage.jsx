@@ -11,7 +11,25 @@ function useWidth() {
 }
 
 const GUIDES = [
+
   // ── Devotional
+
+  {
+    id: 1,
+    category: "Devotional",
+    tag: "Devotional",
+    tagColor: "#9333EA",
+    title: "STREAMS OF IMMORTALITY",
+    subtitle: "A week-long journey into God's presence",
+    desc: "Each day of this guide walks you through a scripture, a reflection, a declaration, and a prayer. Designed to transform your mornings and anchor your week in the Word.",
+    // pages: 14,
+    duration: "Daily",
+    level: "All Levels",
+    author: "Zoe School of Mysteries",
+    icon: "🌅",
+    cover: "/images/new.jpeg",
+    featured: true,
+  },
   {
     id: 1,
     category: "Devotional",
@@ -36,7 +54,7 @@ const GUIDES = [
     title: "Seated in Heavenly Places",
     subtitle: "Understanding your position in Christ",
     desc: "A 7-day devotional guide unpacking Ephesians 2:6 — what it truly means to be seated with Christ in heavenly places and how to live from that reality.",
-    pages: 12,
+    // pages: 12,
     duration: "7 Days",
     level: "All Levels",
     author: "Zoe School of Mysteries",
@@ -287,6 +305,7 @@ const TELEGRAM_LINK = "https://t.me/+Rbm2mYDv2TlJLdoJ";
 
 function downloadGuide(guide) {
   const pdfUrls = {
+    1:  "/pdfs/book stream of immortals final edit.pdf",
     1:  "/pdfs/STREAMS OF IMMORTALITY DEVOTIONAL.pdf",
     2:  "/pdfs/Seated_in_Heavenly_Places.pdf",
     3:  "/pdfs/4th Dimensional Living in a 3 D - David Yonggi Cho.pdf",

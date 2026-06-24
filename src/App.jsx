@@ -1,4 +1,6 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
+import { HelmetProvider } from "react-helmet-async";
+// import { useTheme } from "./ThemeContext";  // no extension needed
 import EventsCarousel, { EventsPage, EventDetailPage, events } from "./Components/EventPage";
 import Navbar from "./Components/Navbar";
 import BlogPage from "./Components/BlogPage";
@@ -6,10 +8,8 @@ import Hero from "./Components/Hero";
 import AboutPage from "./Components/AboutPage";
 import AuthPage from "./Components/AuthPage";
 import Experience from "./Components/Experience";
-// import EventsCarousel from "./Components/EventPage";
 import Volunteer from "./Components/Volunteer";
 import SermonPage from "./Components/SermonPage";
-// import GetInvolved from "./Components/GetInvolved";
 import Footer from "./Components/Footer";
 import StreamsPage from "./Components/StreamsPage";
 import GivePage from "./Components/GivePage";
@@ -18,59 +18,44 @@ import AdminPanel from "./Components/AdminPanel";
 import logo from "./logo.png";
 import BooksPage from "./Components/BooksPage";
 import StudyGuidesPage from "./Components/StudyGuidesPage";
-import PrayerPage from "./Components/PrayerPage"
+import PrayerPage from "./Components/PrayerPage";
 import LocationSystem from "./Components/LocationSystem";
 import IssuesPage from "./Components/IssuesPage";
 import ProfilePage from "./Components/ProfilePage";
+import SEOHead from "./Components/SEOHead";
 import './App.css';
 
 export default function App() {
-  const [page,        setPage]        = useState("home");
-  const [miniSection, setMiniSection] = useState("all");
-  const [user,        setUser]        = useState(null);
-  // Add to state:
+  const [page,           setPage]           = useState("home");
+  const [miniSection,    setMiniSection]    = useState("all");
+  const [user,           setUser]           = useState(null);
   const [selectedEventId, setSelectedEventId] = useState(null);
-const [storeSearch, setStoreSearch] = useState("");
+  const [storeSearch,    setStoreSearch]    = useState("");
 
-  
-  // Update navigate function:
-const navigate = (pg, section = "") => {
-  setPage(pg);
-  // if (page === "blog") return <BlogPage onNavigate={onNavigate} />;
+  const navigate = (pg, section = "") => {
+    setPage(pg);
+    if (pg === "ministries") setMiniSection(section || "all");
+    if (pg === "store")      setStoreSearch(section || "");
+    window.scrollTo(0, 0);
 
-  if (pg === "ministries") setMiniSection(section || "all");
-  if (pg === "store") setStoreSearch(section || "");
-  window.scrollTo(0, 0);
-
-
-  // Only scroll to a DOM element if section looks like a CSS selector
-  if (section && section.startsWith("#")) {
-    setTimeout(() => {
-      document.querySelector(section)?.scrollIntoView({ behavior: "smooth" });
-    }, 100);
-  }
-};
-
-  // ✅ THIS IS THE KEY FIX — check role on login
-  const handleLogin = (u) => {
-    setUser(u);
-    if (u.role === "admin") {
-      setPage("admin");   // 👈 admin goes to admin panel
-    } else {
-      setPage("home");    // 👈 regular member goes home
+    if (section && section.startsWith("#")) {
+      setTimeout(() => {
+        document.querySelector(section)?.scrollIntoView({ behavior: "smooth" });
+      }, 100);
     }
   };
 
-  // Add this handler (alongside handleLogin etc):
-const handleSelectEvent = (id) => {
-  setSelectedEventId(id);
-  setPage("eventdetail");
-};
+  const handleLogin = (u) => {
+    setUser(u);
+    setPage(u.role === "admin" ? "admin" : "home");
+  };
 
+  const handleSelectEvent = (id) => {
+    setSelectedEventId(id);
+    setPage("eventdetail");
+  };
 
-
-
-
+  // ── Shared navbar instance ──────────────────────────────────────────────
   const NavbarComponent = (
     <Navbar
       logo={logo}
@@ -81,134 +66,202 @@ const handleSelectEvent = (id) => {
     />
   );
 
+  // ── Resolve the current event for detail page ───────────────────────────
+  const currentEvent = events.find(e => e.id === selectedEventId);
+
   return (
-    <div style={{ background: "#000", minHeight: "100vh" }}>
+    // HelmetProvider must wrap the entire app for react-helmet-async to work
+    <HelmetProvider>
+      <div style={{ background: "#000", minHeight: "100vh" }}>
 
-      {page === "auth" && (
-        <AuthPage
-          logo={logo}
-          onBack={() => setPage("home")}
-          onLogin={handleLogin}  
-        />
-      )}
+        {/* ── Auth ── */}
+        {page === "auth" && (
+          <>
+            <SEOHead page="auth" />
+            <AuthPage
+              logo={logo}
+              onBack={() => setPage("home")}
+              onLogin={handleLogin}
+            />
+          </>
+        )}
 
-      {page === "admin" && (
-        <AdminPanel onExit={() => setPage("home")} />
-      )}
+        {/* ── Admin (no public SEO needed) ── */}
+        {page === "admin" && (
+          <AdminPanel onExit={() => setPage("home")} />
+        )}
 
-      {page === "about" && <>{NavbarComponent}<AboutPage /></>}
-      {page === "streams" && <>{NavbarComponent}<StreamsPage /></>}
-      {page === "give" && <>{NavbarComponent}<GivePage /></>}
-      {page === "guides" && (<>{NavbarComponent}<StudyGuidesPage /></>)}
-      {page === "prayer" && (<>{NavbarComponent}<PrayerPage user={user} onNavigate={navigate} /></>)}
+        {/* ── About ── */}
+        {page === "about" && (
+          <>
+            <SEOHead page="about" />
+            {NavbarComponent}
+            <AboutPage />
+          </>
+        )}
 
-      {page === "ministries" && (
-        <>
-          <Navbar
-            logo={logo} user={user}
-            onUserIconClick={() => setPage("auth")}
-            onLogout={() => { setUser(null); setPage("home"); }}
-            onNavigate={navigate}
-          />
-          <MinistriesPage scrollTo={miniSection} />
-        </>
-      )}
+        {/* ── Live Streams ── */}
+        {page === "streams" && (
+          <>
+            <SEOHead page="streams" />
+            {NavbarComponent}
+            <StreamsPage />
+          </>
+        )}
 
-{/* Add to routing */}
-{page === "store" && (
-  <>
-    {NavbarComponent}
-    <BooksPage searchQuery={storeSearch} />
-  </>
-)}
+        {/* ── Give ── */}
+        {page === "give" && (
+          <>
+            <SEOHead page="give" />
+            {NavbarComponent}
+            <GivePage />
+          </>
+        )}
 
-      {page === "home" && (
-  <>
-    {NavbarComponent}
-    <Hero />
-    <Experience />
-    <EventsCarousel 
-      onSeeMore={() => navigate("events")} 
-      onSelectEvent={handleSelectEvent}  
-    />
-    <Footer logo={logo} onNavigate={navigate} />
-  </>
-)}
+        {/* ── Study Guides ── */}
+        {page === "guides" && (
+          <>
+            <SEOHead page="guides" />
+            {NavbarComponent}
+            <StudyGuidesPage />
+          </>
+        )}
 
+        {/* ── Prayer ── */}
+        {page === "prayer" && (
+          <>
+            <SEOHead page="prayer" />
+            {NavbarComponent}
+            <PrayerPage user={user} onNavigate={navigate} />
+          </>
+        )}
 
+        {/* ── Ministries ── */}
+        {page === "ministries" && (
+          <>
+            <SEOHead page="ministries" />
+            <Navbar
+              logo={logo} user={user}
+              onUserIconClick={() => setPage("auth")}
+              onLogout={() => { setUser(null); setPage("home"); }}
+              onNavigate={navigate}
+            />
+            <MinistriesPage scrollTo={miniSection} />
+          </>
+        )}
 
-      {page === "locations" && (
-  <>
-    {NavbarComponent}
-    <LocationSystem />
-  </>
-)}
+        {/* ── Store / Books ── */}
+        {page === "store" && (
+          <>
+            <SEOHead page="store" />
+            {NavbarComponent}
+            <BooksPage searchQuery={storeSearch} />
+          </>
+        )}
 
-      {page === "volunteer" && (
-  <>
-    {NavbarComponent}
-    <Volunteer />
-  </>
-)}
+        {/* ── Home ── */}
+        {page === "home" && (
+          <>
+            <SEOHead page="home" />
+            {NavbarComponent}
+            <Hero />
+            <Experience />
+            <EventsCarousel
+              onSeeMore={() => navigate("events")}
+              onSelectEvent={handleSelectEvent}
+            />
+            <Footer logo={logo} onNavigate={navigate} />
+          </>
+        )}
 
-{page === "issues" && (
-  <>
-    {NavbarComponent}
-    <IssuesPage />
-  </>
-)}
+        {/* ── Locations ── */}
+        {page === "locations" && (
+          <>
+            <SEOHead page="locations" />
+            {NavbarComponent}
+            <LocationSystem />
+          </>
+        )}
 
+        {/* ── Volunteer ── */}
+        {page === "volunteer" && (
+          <>
+            <SEOHead page="volunteer" />
+            {NavbarComponent}
+            <Volunteer />
+          </>
+        )}
 
-{page === "profile" && (
-  <>
-    {NavbarComponent}
-    <ProfilePage
-      user={user}
-      onLogout={() => {
-        setUser(null);
-        setPage("home");
-      }}
-    />
-  </>
-)}
+        {/* ── Issues ── */}
+        {page === "issues" && (
+          <>
+            <SEOHead page="issues" />
+            {NavbarComponent}
+            <IssuesPage />
+          </>
+        )}
 
-{page === "sermons" && (
-  <>
-    {NavbarComponent}
-    <SermonPage />
-  </>
-)}
+        {/* ── Profile (auth-protected, minimal SEO) ── */}
+        {page === "profile" && (
+          <>
+            <SEOHead page="profile" />
+            {NavbarComponent}
+            <ProfilePage
+              user={user}
+              onLogout={() => { setUser(null); setPage("home"); }}
+            />
+          </>
+        )}
 
+        {/* ── Sermons ── */}
+        {page === "sermons" && (
+          <>
+            <SEOHead page="sermons" />
+            {NavbarComponent}
+            <SermonPage />
+          </>
+        )}
 
-{page === "events" && (
-  <>
-    {NavbarComponent}
-    <EventsPage 
-      onBack={() => navigate("home")} 
-      onSelectEvent={handleSelectEvent} 
-    />
-  </>
-)}
+        {/* ── Events List ── */}
+        {page === "events" && (
+          <>
+            <SEOHead page="events" />
+            {NavbarComponent}
+            <EventsPage
+              onBack={() => navigate("home")}
+              onSelectEvent={handleSelectEvent}
+            />
+          </>
+        )}
 
-{page === "eventdetail" && selectedEventId && (
-  <>
-    {NavbarComponent}
-    <EventDetailPage 
-      event={events.find(e => e.id === selectedEventId)} 
-      onBack={() => navigate("events")} 
-    />
-  </>
-)}
+        {/* ── Event Detail (dynamic schema per event) ── */}
+        {page === "eventdetail" && currentEvent && (
+          <>
+            <SEOHead
+              page="eventdetail"
+              title={`${currentEvent.title} – Zoe Church`}
+              description={currentEvent.description || `Join us for ${currentEvent.title} at Zoe Church.`}
+              image={currentEvent.image}
+              event={currentEvent}
+            />
+            {NavbarComponent}
+            <EventDetailPage
+              event={currentEvent}
+              onBack={() => navigate("events")}
+            />
+          </>
+        )}
 
+        {/* ── Blog ── */}
+        {page === "blog" && (
+          <>
+            <SEOHead page="blog" />
+            {NavbarComponent}
+            <BlogPage onNavigate={navigate} />
+          </>
+        )}
 
-{page === "blog" && (
-  <>
-    {NavbarComponent}
-    <BlogPage onNavigate={navigate} />
-  </>
-)}
-    </div>
+      </div>
+    </HelmetProvider>
   );
 }
-
-

@@ -1,4 +1,7 @@
 import { useState, useEffect, useRef } from "react";
+// import { useTheme } from "../ThemeContext";
+
+
 
 function useWidth() {
   const [w, setW] = useState(typeof window !== "undefined" ? window.innerWidth : 1200);
@@ -74,6 +77,7 @@ export default function AboutPage() {
   const topOffset = isMobile ? 130 : 76;
 
   const [activeSection, setActiveSection] = useState("ab-about");
+  // const { darkMode } = useTheme();
 
   useEffect(() => {
     const handler = () => {

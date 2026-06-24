@@ -727,7 +727,7 @@ const events = [
     title: "Evolve 2025 — The Language of Mastery",
     dateLabel: "24 – 30 November, 2025",
     startDate: new Date("2025-11-24"),
-    endDate: new Date("2025-11-30"),
+    endDate: new Date("2025-11-30T23:59:59"),
     location: "Ikorodu, Lagos, Nigeria (Online & Onsite)",
     desc: "A week of insight meetings where lights converge, kings emerge, and priesthood becomes culture. Featuring Apostle Othniel Ikechukwu, Apostle Hassan Melchizedek, Apostle Daniel Wesonga, Rabbi Smith Cosmos, Prophet Abiola Paul Oyeniyi and Nick Graceman.",
     accentColor: "#F5A800",
@@ -742,7 +742,7 @@ const events = [
     title: "Evolve — 3rd Year Anniversary",
     dateLabel: "26 – 30 September",
     startDate: new Date("2025-09-26"),
-    endDate: new Date("2025-09-30"),
+    endDate: new Date("2025-09-30T23:59:59"),
     location: "Unity Estate, Off Engineer Road, Ojota Temu, Lagos",
     desc: "5 days of camping centered on equipping, activation, impartation, transfiguration and physical blessings, with Pst. Clem Aigbe, Pst. Taiwo Akinkemi, Nick Graceman, D-Dam and other ancients. Rooms available at a cheap price.",
     accentColor: "#c0392b",
@@ -754,10 +754,25 @@ const events = [
   {
     id: 3,
     tag: "Prophetic Summons",
+    title: "META MORPHOSIS",
+    dateLabel: "26 June, 2026",
+    startDate: new Date("2026-06-26"),
+    endDate: new Date("2026-06-26T23:59:59"),
+    location: "Online 8.00pm(Whatsapp & Telegram)",
+    desc: "Divine Transformation ,Soaking in the rivers of divinity",
+    accentColor: "#9333EA",
+    bgColor: "#0d0014",
+    textColor: "#fff",
+    image: "/images/event.jpeg",
+    type: "summit",
+  },
+  {
+    id: 4,
+    tag: "Prophetic Summons",
     title: "The Days of the Saints",
     dateLabel: "27 July – 2 August, 2026",
     startDate: new Date("2026-07-27"),
-    endDate: new Date("2026-08-02"),
+    endDate: new Date("2026-08-02T23:59:59"),
     location: "Online & Onsite — details released closer to the date",
     desc: "A mystical gathering built on Romans 8:19 — mystical, quality, excellence. A prophetic summons to be equipped, to transform culture, and to reveal Christ.",
     accentColor: "#9333EA",
@@ -767,12 +782,12 @@ const events = [
     type: "summit",
   },
   {
-    id: 4,
+    id: 5,
     tag: "Executive Classes",
     title: "One-on-One Executive Classes — August 2026 Cohort",
     dateLabel: "August 2026 Cohort",
     startDate: new Date("2026-08-01"),
-    endDate: new Date("2026-08-31"),
+    endDate: new Date("2026-08-31T23:59:59"),
     location: "On Demand — Online",
     desc: "Practical, precise, life-shaping one-on-one impartation sessions on your terms and on demand. Just 12 slots available at $200 per slot; next access opens in the following cohort.",
     accentColor: "#F5A800",
@@ -782,7 +797,7 @@ const events = [
     type: "class",
   },
   {
-    id: 5,
+    id: 6,
     tag: "Daily",
     title: "Meditation",
     recurring: "Monday – Friday, 6AM Daily · Sunday 7AM WAT",
@@ -883,7 +898,16 @@ function EventsCarousel({ onSeeMore, onSelectEvent }) {
   const gap = width < 480 ? 16 : 24;
   const cardWidth = (trackWidth - gap * (Math.ceil(visible) - 1)) / visible;
   const translateX = current * (cardWidth + gap);
-  const now = new Date();
+  const [now, setNow] = useState(new Date());
+  // const now = useCurrentTime();
+
+useEffect(() => {
+  const timer = setInterval(() => {
+    setNow(new Date());
+  }, 60000); // every minute
+
+  return () => clearInterval(timer);
+}, []);
 
   return (
     <section style={{ background: "#0A0A0A", padding: `${width < 768 ? 64 : 100}px 0`, overflow: "hidden" }}>
@@ -1083,7 +1107,16 @@ function EventsCarousel({ onSeeMore, onSelectEvent }) {
 function EventsPage({ onBack, onSelectEvent }) {
   const width = useWindowWidth();
   const isMobile = width < 768;
-  const now = new Date();
+  const [now, setNow] = useState(new Date());
+
+useEffect(() => {
+  const timer = setInterval(() => {
+    setNow(new Date());
+  }, 60000); // every minute
+
+  return () => clearInterval(timer);
+}, []);
+// const now = useCurrentTime();
   const { upcoming, past, daily } = categorize(events, now);
   const featured = upcoming[0];
   const restUpcoming = upcoming.slice(1);
@@ -1390,7 +1423,16 @@ function EventsPage({ onBack, onSelectEvent }) {
 function EventDetailPage({ event, onBack }) {
   const width = useWindowWidth();
   const isMobile = width < 768;
-  const now = new Date();
+  const [now, setNow] = useState(new Date());
+
+useEffect(() => {
+  const timer = setInterval(() => {
+    setNow(new Date());
+  }, 60000); // every minute
+
+  return () => clearInterval(timer);
+}, []);
+// const now = useCurrentTime();
   const isDaily = event.type === "daily" || event.recurring;
   const isPast = !isDaily && event.endDate && event.endDate < now;
   const statusLabel = isDaily ? "Daily" : isPast ? "Past Event" : "Upcoming";
