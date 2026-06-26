@@ -1,3 +1,4 @@
+
 import { useState, useEffect, useRef } from "react";
 
 function useWidth() {
@@ -13,51 +14,56 @@ function useWidth() {
 }
 
 const slides = [
-  {
-    image: "/images/hero1.png",
-    eyebrow: "Welcome to",
-    title: ["Zoe", "School of", "Mysteries"],
-    subtitle:
-      "A divine learning ecosystem where the mysteries of Christ are unveiled, the life of God is cultivated, and believers are equipped to manifest Heaven's realities on the earth.",
-  },
-  {
-    image: "/images/hero2.png",
-    eyebrow: "The Life of God",
-    title: ["Awaken", "To Zoe", "& Glory"],
-    subtitle:
-      "Journey beyond religion into the experiential knowledge of God, where His life flows through you, transforming your spirit, soul, and body into a vessel of His manifest presence.",
-  },
-  {
-    image: "/images/hero3.png",
-    eyebrow: "Ancient Paths of Wisdom",
-    title: ["Unlock", "Kingdom", "Mysteries"],
-    subtitle:
-      "Receive revelation, wisdom, and spiritual understanding that activate purpose, illuminate destiny, and empower victorious living in every sphere of influence.",
-  },
-  {
-    image: "/images/hero4.png",
-    eyebrow: "A Company of Saints",
-    title: ["Manifest", "Christ", "To Nations"],
-    subtitle:
-      "Be trained, transformed, and commissioned as a carrier of divine life—demonstrating the reality of Christ and extending His Kingdom across cities and nations.",
-  },
+{
+image: "/images/hero1.png",
+eyebrow: "Welcome to",
+title: ["Zoe", "School of", "Mysteries"],
+subtitle:
+"A Kingdom learning ecosystem dedicated to unveiling the realities of Christ, cultivating spiritual intelligence, and raising sons who influence their generation from the wisdom, nature, and life of God.",
+},
+{
+image: "/images/hero2.png",
+eyebrow: "The Life of God",
+title: ["Awaken", "To Zoe", "& Dominion"],
+subtitle:
+"Discover the reality of the divine life within. Grow in identity, purpose, and spiritual capacity as you learn to manifest the life and nature of Christ in every sphere of influence.",
+},
+{
+image: "/images/hero3.png",
+eyebrow: "Kingdom Realities",
+title: ["Unlock", "Divine", "Wisdom"],
+subtitle:
+"Gain insight into the mysteries, laws, and realities of the Kingdom that empower effective leadership, purposeful living, spiritual maturity, and lasting transformation.",
+},
+{
+image: "/images/hero4.png",
+eyebrow: "The Emergence of Sons",
+title: ["Influence", "Systems", "& Nations"],
+subtitle:
+"Be equipped to demonstrate the nature of Christ, exercise Kingdom influence, transform cultures and systems, and become a catalyst for generational transformation and national impact.",
+},
 ];
+
+
 
 export default function Hero() {
   const width = useWidth();
   const isMobile = width < 640;
   const isTablet = width >= 640 && width < 1024;
 
-  // navbar = 76px, tab bar on mobile = 54px
   const topOffset = isMobile ? 76 : 76;
 
   const sidePad = isMobile ? 22 : isTablet ? 40 : 72;
+
+  // ── LARGER title clamps for better adult readability ──
   const titleSize = isMobile
-    ? "clamp(40px, 11vw, 56px)"
+    ? "clamp(46px, 12vw, 62px)"
     : isTablet
-    ? "clamp(44px, 7vw, 64px)"
-    : "clamp(52px, 6vw, 80px)";
-  const subtitleSize = isMobile ? 14 : isTablet ? 16 : 18;
+    ? "clamp(50px, 8vw, 70px)"
+    : "clamp(58px, 6.5vw, 86px)";
+
+  // ── LARGER subtitle sizes ──
+  const subtitleSize = isMobile ? 17 : isTablet ? 18 : 20;
 
   const [current, setCurrent] = useState(0);
   const [animating, setAnimating] = useState(false);
@@ -68,7 +74,6 @@ export default function Hero() {
   const touchStartY = useRef(null);
   const wrapperRef = useRef(null);
 
-  // Auto-advance
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrent((prev) => (prev + 1) % slides.length);
@@ -76,7 +81,6 @@ export default function Hero() {
     return () => clearInterval(timer);
   }, []);
 
-  // Prevent vertical scroll on horizontal swipe
   useEffect(() => {
     const el = wrapperRef.current;
     if (!el) return;
@@ -176,9 +180,9 @@ export default function Hero() {
           to   { opacity: 1; transform: translateY(0); }
         }
 
-        .slide-enter-next { animation: fadeSlideNext 0.6s cubic-bezier(0.4,0,0.2,1) forwards; }
-        .slide-enter-prev { animation: fadeSlidePrev 0.6s cubic-bezier(0.4,0,0.2,1) forwards; }
-        .slide-enter-mobile { animation: slideUpContent 0.55s cubic-bezier(0.4,0,0.2,1) forwards; }
+        .slide-enter-next  { animation: fadeSlideNext 0.6s cubic-bezier(0.4,0,0.2,1) forwards; }
+        .slide-enter-prev  { animation: fadeSlidePrev 0.6s cubic-bezier(0.4,0,0.2,1) forwards; }
+        .slide-enter-mobile{ animation: slideUpContent 0.55s cubic-bezier(0.4,0,0.2,1) forwards; }
         .bg-zoom   { animation: zoomBg 9s ease forwards; }
         .bg-fadein { animation: bgFadeIn 0.45s ease forwards; }
         .orb1      { animation: orbFloat 10s ease-in-out infinite; }
@@ -197,30 +201,29 @@ export default function Hero() {
         }
 
         /* ── Mobile Card Sheet ── */
-/* AFTER */
-.mobile-sheet {
-  position: absolute;
-  top: 30%; bottom: 0; left: 0; right: 0;
-  background: linear-gradient(
-    to bottom,
-    rgba(0,0,0,0) 0%,
-    rgba(5,2,18,0.85) 22%,
-    rgba(5,2,18,0.97) 50%,
-    rgba(5,2,18,1) 100%
-  );
-  padding: 36px 22px 24px;
-  z-index: 4;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
+        .mobile-sheet {
+          position: absolute;
+          top: 30%; bottom: 0; left: 0; right: 0;
+          background: linear-gradient(
+            to bottom,
+            rgba(0,0,0,0) 0%,
+            rgba(5,2,18,0.85) 22%,
+            rgba(5,2,18,0.97) 50%,
+            rgba(5,2,18,1) 100%
+          );
+          padding: 36px 22px 28px;
+          z-index: 4;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+        }
 
         .mobile-eyebrow {
           display: flex; align-items: center; gap: 9px;
           font-family: 'Rajdhani', sans-serif;
-          font-size: 9px; letter-spacing: 5px;
+          font-size: 13px; letter-spacing: 4px;
           text-transform: uppercase; color: #F5A800;
-          margin-bottom: 10px;
+          margin-bottom: 12px;
           margin-top: -50px;
         }
         .mobile-eyebrow-line {
@@ -229,9 +232,7 @@ export default function Hero() {
           flex-shrink: 0;
         }
 
-        .mobile-title-wrap {
-          margin-bottom: 12px;
-        }
+        .mobile-title-wrap { margin-bottom: 14px; }
         .mobile-title-gold {
           font-family: 'Cinzel', serif;
           font-weight: 900;
@@ -257,19 +258,20 @@ export default function Hero() {
           text-shadow: 0 0 50px rgba(147,51,234,0.55);
         }
 
+        /* ── Subtitle: bumped to 17px on mobile ── */
         .mobile-subtitle {
           font-family: 'Cormorant Garamond', serif;
-          font-size: 14px;
+          font-size: 17px;
           font-weight: 300;
           font-style: italic;
-          color: rgba(255,255,255,0.65);
-          line-height: 1.75;
-          margin-bottom: 14px;
+          color: rgba(255,255,255,0.68);
+          line-height: 1.8;
+          margin-bottom: 16px;
         }
 
-        /* Dot nav */
+        /* Dot nav — taller for easier tapping */
         .dot {
-          height: 3px; border-radius: 2px;
+          height: 5px; border-radius: 3px;
           background: rgba(255,255,255,0.18);
           cursor: pointer; transition: all 0.4s;
           overflow: hidden; position: relative;
@@ -277,7 +279,7 @@ export default function Hero() {
         .dot.active { background: rgba(245,168,0,0.22); }
         .dot-progress {
           position: absolute; top: 0; left: 0; height: 100%;
-          background: #F5A800; border-radius: 2px;
+          background: #F5A800; border-radius: 3px;
           animation: progressBar 6s linear forwards;
         }
 
@@ -285,16 +287,16 @@ export default function Hero() {
         .slide-counter {
           display: flex; align-items: center; gap: 4px;
           font-family: 'Rajdhani', sans-serif;
-          font-size: 10px; letter-spacing: 2px;
+          font-size: 13px; letter-spacing: 2px;
           color: rgba(255,255,255,0.35);
         }
         .slide-counter-num {
-          color: #F5A800; font-size: 18px; font-weight: 700; line-height: 1;
+          color: #F5A800; font-size: 22px; font-weight: 700; line-height: 1;
         }
 
-        /* Arrow buttons */
+        /* Arrow buttons — larger tap target */
         .arrow-btn {
-          width: 40px; height: 40px; border-radius: 50%;
+          width: 48px; height: 48px; border-radius: 50%;
           border: 1px solid rgba(255,255,255,0.18);
           background: rgba(0,0,0,0.38); backdrop-filter: blur(8px);
           display: flex; align-items: center; justify-content: center;
@@ -313,38 +315,34 @@ export default function Hero() {
         }
 
         /* Mobile dots */
-        .mobile-dots {
-          display: flex; gap: 7px; align-items: center;
-        }
+        .mobile-dots { display: flex; gap: 7px; align-items: center; }
 
         /* Mobile slide counter */
         .mobile-counter {
           font-family: 'Rajdhani', sans-serif;
-          font-size: 10px; letter-spacing: 2px;
+          font-size: 13px; letter-spacing: 2px;
           color: rgba(255,255,255,0.3);
         }
         .mobile-counter span {
-          color: #F5A800; font-size: 16px; font-weight: 700;
+          color: #F5A800; font-size: 20px; font-weight: 700;
         }
 
         /* Gold divider */
-/* AFTER */
-.gold-divider {
-  width: 36px; height: 1px;
-  background: linear-gradient(to right, #F5A800, transparent);
-  margin-bottom: 12px;
-}
+        .gold-divider {
+          width: 36px; height: 2px;
+          background: linear-gradient(to right, #F5A800, transparent);
+          margin-bottom: 14px;
+        }
 
         /* Scroll indicator */
         .scroll-label {
           font-family: 'Rajdhani', sans-serif;
-          font-size: 9px; letter-spacing: 4px;
+          font-size: 12px; letter-spacing: 4px;
           text-transform: uppercase;
-          color: rgba(255,255,255,0.22);
+          color: rgba(255,255,255,0.28);
           writing-mode: vertical-rl;
         }
 
-        /* Desktop layout adjustments */
         .hero-stat { transition: transform 0.3s; cursor: default; }
         .hero-stat:hover { transform: translateY(-4px); }
 
@@ -363,8 +361,8 @@ export default function Hero() {
         style={{
           position: "relative",
           height: isMobile ? `calc(100vh - 76px - 54px)` : `calc(100vh - 76px)`,
-    marginTop: 76,
-    minHeight: isMobile ? 480 : 600,
+          marginTop: 76,
+          minHeight: isMobile ? 480 : 600,
           overflow: "hidden",
           background: "#050212",
         }}
@@ -382,7 +380,6 @@ export default function Hero() {
         />
 
         {/* ── Overlays ── */}
-        {/* Base dark */}
         <div style={{
           position: "absolute", inset: 0,
           background: isMobile
@@ -392,7 +389,6 @@ export default function Hero() {
           pointerEvents: "none", zIndex: 1,
         }} />
 
-        {/* Purple atmospheric tint */}
         <div style={{
           position: "absolute", inset: 0, zIndex: 1, pointerEvents: "none",
           background: isMobile
@@ -400,7 +396,6 @@ export default function Hero() {
             : "radial-gradient(ellipse 65% 65% at 68% 22%, rgba(107,33,168,0.22) 0%, transparent 70%)",
         }} />
 
-        {/* Gold grid texture */}
         <div style={{
           position: "absolute", inset: 0, opacity: 0.025, zIndex: 1, pointerEvents: "none",
           backgroundImage: `
@@ -437,7 +432,7 @@ export default function Hero() {
           <>
             {/* Slide counter — top right */}
             <div style={{
-              position: "absolute", top: 6, right: 18, zIndex: 6,
+              position: "absolute", top: 8, right: 18, zIndex: 6,
               fontFamily: "Rajdhani, sans-serif",
             }}>
               <div className="mobile-counter">
@@ -459,7 +454,7 @@ export default function Hero() {
 
               {/* Title */}
               <div className="mobile-title-wrap fade-in-up" style={{ animationDelay: "0.12s" }}>
-                <span className={`mobile-title-gold gold-shimmer`} style={{ fontSize: titleSize }}>
+                <span className="mobile-title-gold gold-shimmer" style={{ fontSize: titleSize }}>
                   {slide.title[0]}
                 </span>
                 <span className="mobile-title-white" style={{ fontSize: titleSize }}>
@@ -478,15 +473,14 @@ export default function Hero() {
                 {slide.subtitle}
               </p>
 
-              {/* Bottom row: dots + counter + swipe hint */}
+              {/* Bottom row: dots + swipe hint */}
               <div className="mobile-swipe-row">
-                {/* Dots */}
                 <div className="mobile-dots">
                   {slides.map((_, i) => (
                     <div
                       key={i}
                       className={`dot ${i === current ? "active" : ""}`}
-                      style={{ width: i === current ? 32 : 14 }}
+                      style={{ width: i === current ? 36 : 16 }}
                       onClick={() => goTo(i > current ? "next" : "prev", i)}
                     >
                       {i === current && <div className="dot-progress" key={`p-${current}`} />}
@@ -499,14 +493,14 @@ export default function Hero() {
                   <div
                     className="swipe-hint"
                     style={{
-                      display: "flex", alignItems: "center", gap: 5,
-                      fontFamily: "Rajdhani, sans-serif", fontSize: 8,
-                      letterSpacing: 4, textTransform: "uppercase",
-                      color: "rgba(255,255,255,0.3)",
+                      display: "flex", alignItems: "center", gap: 6,
+                      fontFamily: "Rajdhani, sans-serif", fontSize: 12,
+                      letterSpacing: 3, textTransform: "uppercase",
+                      color: "rgba(255,255,255,0.35)",
                     }}
                   >
                     swipe
-                    <svg width="13" height="13" fill="none" stroke="currentColor" strokeWidth="1.8" viewBox="0 0 24 24">
+                    <svg width="14" height="14" fill="none" stroke="currentColor" strokeWidth="1.8" viewBox="0 0 24 24">
                       <path d="M5 12h14M12 5l7 7-7 7" />
                     </svg>
                   </div>
@@ -526,9 +520,9 @@ export default function Hero() {
               position: "absolute", top: 26, right: 52, zIndex: 5,
               fontFamily: "Rajdhani, sans-serif",
               letterSpacing: 3, color: "rgba(255,255,255,0.28)",
-              fontSize: 12,
+              fontSize: 13,
             }}>
-              <span style={{ color: "#F5A800", fontSize: 22, fontWeight: 700 }}>
+              <span style={{ color: "#F5A800", fontSize: 26, fontWeight: 700 }}>
                 {String(current + 1).padStart(2, "0")}
               </span>
               {" / "}
@@ -543,15 +537,15 @@ export default function Hero() {
                 position: "absolute", zIndex: 3,
                 bottom: 90, left: 0,
                 padding: `0 ${sidePad}px`,
-                maxWidth: isTablet ? 620 : 760,
+                maxWidth: isTablet ? 640 : 780,
               }}
             >
               {/* Eyebrow */}
               <div style={{
                 display: "flex", alignItems: "center", gap: 10,
-                marginBottom: 18,
+                marginBottom: 20,
                 fontFamily: "Rajdhani, sans-serif",
-                fontSize: 10, letterSpacing: 5,
+                fontSize: 13, letterSpacing: 5,
                 textTransform: "uppercase", color: "#F5A800",
               }}>
                 <span style={{
@@ -565,8 +559,8 @@ export default function Hero() {
               {/* Title */}
               <h1 style={{
                 fontFamily: "Cinzel, serif", fontWeight: 900,
-                lineHeight: 1.03, letterSpacing: "-1px",
-                fontSize: titleSize, marginBottom: 22, margin: "0 0 22px",
+                lineHeight: 1.03, letterSpacing: "-0.5px",
+                fontSize: titleSize, margin: "0 0 24px",
               }}>
                 <span className="gold-shimmer" style={{ display: "block" }}>{slide.title[0]}</span>
                 <span style={{ color: "#fff", display: "block" }}>{slide.title[1]}</span>
@@ -578,9 +572,9 @@ export default function Hero() {
 
               {/* Thin gold line */}
               <div style={{
-                width: 44, height: 1,
+                width: 44, height: 2,
                 background: "linear-gradient(to right, #F5A800, transparent)",
-                marginBottom: 20,
+                marginBottom: 22,
               }} />
 
               {/* Subtitle */}
@@ -588,10 +582,10 @@ export default function Hero() {
                 fontFamily: "Cormorant Garamond, serif",
                 fontSize: subtitleSize,
                 fontWeight: 300, fontStyle: "italic",
-                color: "rgba(255,255,255,0.65)",
+                color: "rgba(255,255,255,0.68)",
                 lineHeight: 1.85,
-                margin: "0 0 0 0",
-                maxWidth: isTablet ? "100%" : 480,
+                margin: 0,
+                maxWidth: isTablet ? "100%" : 500,
               }}>
                 {slide.subtitle}
               </p>
@@ -604,12 +598,12 @@ export default function Hero() {
               display: "flex", flexDirection: "column", gap: 12, zIndex: 5,
             }}>
               <div className="arrow-btn" onClick={() => goTo("prev")} role="button" aria-label="Previous slide">
-                <svg width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+                <svg width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
                   <path d="M18 15l-6-6-6 6" />
                 </svg>
               </div>
               <div className="arrow-btn" onClick={() => goTo("next")} role="button" aria-label="Next slide">
-                <svg width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+                <svg width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
                   <path d="M6 9l6 6 6-6" />
                 </svg>
               </div>
@@ -619,13 +613,13 @@ export default function Hero() {
             <div style={{
               position: "absolute",
               bottom: 40, left: "50%", transform: "translateX(-50%)",
-              display: "flex", gap: 8, alignItems: "center", zIndex: 5,
+              display: "flex", gap: 9, alignItems: "center", zIndex: 5,
             }}>
               {slides.map((_, i) => (
                 <div
                   key={i}
                   className={`dot ${i === current ? "active" : ""}`}
-                  style={{ width: i === current ? 36 : 16 }}
+                  style={{ width: i === current ? 40 : 18 }}
                   onClick={() => goTo(i > current ? "next" : "prev", i)}
                 >
                   {i === current && <div className="dot-progress" key={`p-${current}`} />}
@@ -635,7 +629,7 @@ export default function Hero() {
 
             {/* Scroll indicator */}
             <div style={{
-              position: "absolute", bottom: 40, right: 108,
+              position: "absolute", bottom: 40, right: 116,
               display: "flex", flexDirection: "column",
               alignItems: "center", gap: 8, zIndex: 5,
             }}>

@@ -44,6 +44,7 @@ export default function Volunteer() {
           "radial-gradient(circle at top, rgba(245,168,0,0.08), transparent 40%), #000",
         color: "#fff",
         overflow: "hidden",
+        fontFamily: "Georgia, 'Times New Roman', serif",
       }}
     >
       {/* HERO */}
@@ -62,18 +63,16 @@ export default function Volunteer() {
         >
           <div
             style={{
-              width: 90,
-              height: 90,
+              width: 100,
+              height: 100,
               borderRadius: "50%",
-              background:
-                "linear-gradient(135deg,#F5A800,#FFD76A)",
+              background: "linear-gradient(135deg,#F5A800,#FFD76A)",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
-              fontSize: 42,
-              margin: "0 auto 30px",
-              boxShadow:
-                "0 0 50px rgba(245,168,0,.35)",
+              fontSize: 50,
+              margin: "0 auto 36px",
+              boxShadow: "0 0 50px rgba(245,168,0,.35)",
             }}
           >
             🙌
@@ -81,12 +80,13 @@ export default function Volunteer() {
 
           <div
             style={{
-              fontFamily: "Rajdhani, sans-serif",
-              fontSize: 12,
-              letterSpacing: 4,
+              fontFamily: "'Arial', sans-serif",
+              fontSize: 15,
+              letterSpacing: 5,
               textTransform: "uppercase",
               color: "#F5A800",
-              marginBottom: 20,
+              marginBottom: 24,
+              fontWeight: 700,
             }}
           >
             Kingdom Service
@@ -94,11 +94,12 @@ export default function Volunteer() {
 
           <h1
             style={{
-              fontFamily: "Cinzel, serif",
-              fontSize: "clamp(42px,7vw,80px)",
-              lineHeight: 1.05,
-              marginBottom: 25,
+              fontFamily: "Georgia, 'Times New Roman', serif",
+              fontSize: "clamp(48px, 7vw, 88px)",
+              lineHeight: 1.08,
+              marginBottom: 30,
               fontWeight: 800,
+              letterSpacing: "-0.5px",
             }}
           >
             Become Part of
@@ -112,9 +113,10 @@ export default function Volunteer() {
             style={{
               maxWidth: 700,
               margin: "0 auto",
-              fontSize: 18,
-              lineHeight: 1.9,
-              color: "rgba(255,255,255,.75)",
+              fontSize: 22,
+              lineHeight: 2,
+              color: "rgba(255,255,255,.80)",
+              fontFamily: "Georgia, serif",
             }}
           >
             Every great move of God is carried by people who choose
@@ -131,18 +133,18 @@ export default function Volunteer() {
               display: "inline-flex",
               alignItems: "center",
               justifyContent: "center",
-              marginTop: 40,
-              padding: "18px 40px",
+              marginTop: 48,
+              padding: "22px 48px",
               borderRadius: 14,
-              background:
-                "linear-gradient(135deg,#F5A800,#FFD76A)",
+              background: "linear-gradient(135deg,#F5A800,#FFD76A)",
               color: "#000",
               fontWeight: 800,
+              fontSize: 18,
               letterSpacing: 2,
               textTransform: "uppercase",
               textDecoration: "none",
-              boxShadow:
-                "0 20px 60px rgba(245,168,0,.35)",
+              boxShadow: "0 20px 60px rgba(245,168,0,.35)",
+              fontFamily: "'Arial', sans-serif",
             }}
           >
             Join Volunteer Community →
@@ -151,18 +153,13 @@ export default function Volunteer() {
       </section>
 
       {/* STATS */}
-      <section
-        style={{
-          padding: "0 20px 80px",
-        }}
-      >
+      <section style={{ padding: "0 20px 80px" }}>
         <div
           style={{
             maxWidth: 1200,
             margin: "0 auto",
             display: "grid",
-            gridTemplateColumns:
-              "repeat(auto-fit,minmax(220px,1fr))",
+            gridTemplateColumns: "repeat(auto-fit,minmax(220px,1fr))",
             gap: 20,
           }}
         >
@@ -175,29 +172,30 @@ export default function Volunteer() {
             <div
               key={title}
               style={{
-                padding: 24,
+                padding: 28,
                 borderRadius: 16,
                 background: "rgba(255,255,255,.03)",
-                border:
-                  "1px solid rgba(255,255,255,.08)",
+                border: "1px solid rgba(255,255,255,.08)",
                 textAlign: "center",
               }}
             >
               <div
                 style={{
                   color: "#F5A800",
-                  fontSize: 28,
+                  fontSize: 34,
                   fontWeight: 700,
-                  marginBottom: 8,
+                  marginBottom: 10,
+                  fontFamily: "Georgia, serif",
                 }}
               >
                 {value}
               </div>
-
               <div
                 style={{
-                  color: "rgba(255,255,255,.6)",
+                  color: "rgba(255,255,255,.7)",
                   letterSpacing: 1,
+                  fontSize: 17,
+                  fontFamily: "'Arial', sans-serif",
                 }}
               >
                 {title}
@@ -208,23 +206,14 @@ export default function Volunteer() {
       </section>
 
       {/* OPPORTUNITIES */}
-      <section
-        style={{
-          padding: "0 20px 100px",
-        }}
-      >
-        <div
-          style={{
-            maxWidth: 1200,
-            margin: "0 auto",
-          }}
-        >
+      <section style={{ padding: "0 20px 100px" }}>
+        <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <h2
             style={{
-              fontFamily: "Cinzel, serif",
-              fontSize: "clamp(30px,5vw,52px)",
+              fontFamily: "Georgia, 'Times New Roman', serif",
+              fontSize: "clamp(34px, 5vw, 58px)",
               textAlign: "center",
-              marginBottom: 16,
+              marginBottom: 20,
             }}
           >
             Volunteer Opportunities
@@ -233,10 +222,12 @@ export default function Volunteer() {
           <p
             style={{
               textAlign: "center",
-              color: "rgba(255,255,255,.6)",
+              color: "rgba(255,255,255,.70)",
               maxWidth: 700,
               margin: "0 auto 60px",
-              lineHeight: 1.8,
+              lineHeight: 1.9,
+              fontSize: 20,
+              fontFamily: "Georgia, serif",
             }}
           >
             There is a place for your gifts, passion, and calling.
@@ -246,38 +237,33 @@ export default function Volunteer() {
           <div
             style={{
               display: "grid",
-              gridTemplateColumns:
-                "repeat(auto-fit,minmax(280px,1fr))",
-              gap: 20,
+              gridTemplateColumns: "repeat(auto-fit,minmax(290px,1fr))",
+              gap: 24,
             }}
           >
             {opportunities.map((item) => (
               <div
                 key={item.title}
                 style={{
-                  padding: 28,
+                  padding: 32,
                   borderRadius: 18,
-                  background:
-                    "linear-gradient(145deg,#0a0a0a,#050505)",
-                  border:
-                    "1px solid rgba(255,255,255,.08)",
+                  background: "linear-gradient(145deg,#0a0a0a,#050505)",
+                  border: "1px solid rgba(255,255,255,.08)",
                   transition: "all .3s ease",
                 }}
               >
                 <div
                   style={{
-                    width: 60,
-                    height: 60,
+                    width: 68,
+                    height: 68,
                     borderRadius: 14,
-                    background:
-                      "rgba(245,168,0,.08)",
-                    border:
-                      "1px solid rgba(245,168,0,.2)",
+                    background: "rgba(245,168,0,.08)",
+                    border: "1px solid rgba(245,168,0,.2)",
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
-                    fontSize: 28,
-                    marginBottom: 18,
+                    fontSize: 34,
+                    marginBottom: 22,
                   }}
                 >
                   {item.icon}
@@ -285,9 +271,11 @@ export default function Volunteer() {
 
                 <h3
                   style={{
-                    fontFamily: "Cinzel, serif",
-                    marginBottom: 12,
+                    fontFamily: "Georgia, 'Times New Roman', serif",
+                    marginBottom: 14,
                     color: "#fff",
+                    fontSize: 24,
+                    fontWeight: 700,
                   }}
                 >
                   {item.title}
@@ -295,8 +283,10 @@ export default function Volunteer() {
 
                 <p
                   style={{
-                    color: "rgba(255,255,255,.55)",
-                    lineHeight: 1.8,
+                    color: "rgba(255,255,255,.65)",
+                    lineHeight: 1.9,
+                    fontSize: 18,
+                    fontFamily: "Georgia, serif",
                   }}
                 >
                   {item.desc}
@@ -308,31 +298,27 @@ export default function Volunteer() {
       </section>
 
       {/* QUOTE */}
-      <section
-        style={{
-          padding: "0 20px 100px",
-        }}
-      >
+      <section style={{ padding: "0 20px 100px" }}>
         <div
           style={{
             maxWidth: 1000,
             margin: "0 auto",
-            padding: "50px 30px",
+            padding: "60px 40px",
             borderRadius: 24,
             background:
               "linear-gradient(135deg, rgba(245,168,0,.08), rgba(255,255,255,.02))",
-            border:
-              "1px solid rgba(245,168,0,.15)",
+            border: "1px solid rgba(245,168,0,.15)",
             textAlign: "center",
           }}
         >
           <p
             style={{
-              fontFamily: "Cormorant Garamond, serif",
-              fontSize: "clamp(28px,4vw,42px)",
+              fontFamily: "Georgia, 'Times New Roman', serif",
+              fontSize: "clamp(28px, 4vw, 46px)",
               fontStyle: "italic",
               color: "#fff",
-              marginBottom: 15,
+              marginBottom: 20,
+              lineHeight: 1.5,
             }}
           >
             "We are not building an organization.
@@ -342,9 +328,11 @@ export default function Volunteer() {
           <div
             style={{
               color: "#F5A800",
-              letterSpacing: 3,
+              letterSpacing: 4,
               textTransform: "uppercase",
-              fontSize: 12,
+              fontSize: 15,
+              fontFamily: "'Arial', sans-serif",
+              fontWeight: 700,
             }}
           >
             Zoe School of Mysteries
@@ -353,17 +341,12 @@ export default function Volunteer() {
       </section>
 
       {/* FINAL CTA */}
-      <section
-        style={{
-          textAlign: "center",
-          padding: "0 20px 120px",
-        }}
-      >
+      <section style={{ textAlign: "center", padding: "0 20px 120px" }}>
         <h2
           style={{
-            fontFamily: "Cinzel, serif",
-            fontSize: "clamp(28px,5vw,50px)",
-            marginBottom: 20,
+            fontFamily: "Georgia, 'Times New Roman', serif",
+            fontSize: "clamp(32px, 5vw, 56px)",
+            marginBottom: 24,
           }}
         >
           Ready To Serve?
@@ -372,9 +355,11 @@ export default function Volunteer() {
         <p
           style={{
             maxWidth: 650,
-            margin: "0 auto 35px",
-            color: "rgba(255,255,255,.65)",
-            lineHeight: 1.8,
+            margin: "0 auto 40px",
+            color: "rgba(255,255,255,.70)",
+            lineHeight: 1.9,
+            fontSize: 20,
+            fontFamily: "Georgia, serif",
           }}
         >
           Join our volunteer community and become part of a
@@ -387,17 +372,17 @@ export default function Volunteer() {
           rel="noopener noreferrer"
           style={{
             display: "inline-block",
-            padding: "18px 42px",
+            padding: "22px 50px",
             borderRadius: 14,
-            background:
-              "linear-gradient(135deg,#F5A800,#FFD76A)",
+            background: "linear-gradient(135deg,#F5A800,#FFD76A)",
             color: "#000",
             textDecoration: "none",
             fontWeight: 800,
+            fontSize: 18,
             letterSpacing: 2,
             textTransform: "uppercase",
-            boxShadow:
-              "0 20px 60px rgba(245,168,0,.35)",
+            boxShadow: "0 20px 60px rgba(245,168,0,.35)",
+            fontFamily: "'Arial', sans-serif",
           }}
         >
           Join Telegram Group

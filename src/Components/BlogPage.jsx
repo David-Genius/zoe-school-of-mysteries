@@ -11,9 +11,6 @@ function useWidth() {
   return w;
 }
 
-// ─────────────────────────────────────────
-// READING PROGRESS BAR
-// ─────────────────────────────────────────
 function useReadingProgress(ref) {
   const [progress, setProgress] = useState(0);
   useEffect(() => {
@@ -32,9 +29,6 @@ function useReadingProgress(ref) {
   return progress;
 }
 
-// ─────────────────────────────────────────
-// AMBIENT EMBER PARTICLES (lightweight canvas, echoes GiveCanvas)
-// ─────────────────────────────────────────
 function EmberCanvas() {
   const canvasRef = useRef(null);
   useEffect(() => {
@@ -81,7 +75,6 @@ function EmberCanvas() {
   );
 }
 
-// estimate reading time from html body
 function readingTime(html) {
   if (!html) return 1;
   const text = html.replace(/<[^>]*>/g, " ");
@@ -140,12 +133,17 @@ export default function BlogPage({ onNavigate }) {
           animation: bp-shimmer 3s linear infinite;
         }
 
-        .bp-eyebrow { display:flex; align-items:center; gap:10px; font-family:'Rajdhani',sans-serif; font-size:11px; letter-spacing:5px; text-transform:uppercase; color:#F5A800; margin-bottom:16px; }
+        .bp-eyebrow {
+          display:flex; align-items:center; gap:10px;
+          font-family:'Rajdhani',sans-serif;
+          font-size:13px; letter-spacing:5px;
+          text-transform:uppercase; color:#F5A800;
+          margin-bottom:16px;
+        }
         .bp-line { width:24px; height:1px; background:#F5A800; display:inline-block; }
 
         .bp-in { opacity:0; animation:bp-fadeUp 0.7s ease forwards; }
 
-        /* Hero */
         .bp-hero {
           position: relative; overflow: hidden;
           background: radial-gradient(ellipse 80% 60% at 50% 30%, #1a0a00 0%, #000 70%);
@@ -157,17 +155,13 @@ export default function BlogPage({ onNavigate }) {
           pointer-events:none;
         }
 
-        /* Spine divider used through the list */
-        .bp-spine {
-          position: relative;
-        }
+        .bp-spine { position: relative; }
         .bp-spine::before {
           content:'';
           position:absolute; left:-1px; top:0; bottom:0; width:2px;
           background: linear-gradient(to bottom, transparent, rgba(245,168,0,0.35), transparent);
         }
 
-        /* Post card */
         .bp-card {
           position: relative;
           background: rgba(255,255,255,0.02);
@@ -192,7 +186,6 @@ export default function BlogPage({ onNavigate }) {
         }
         .bp-card:hover::before { opacity: 1; }
 
-        /* Featured card (first post) */
         .bp-featured {
           position: relative;
           background: linear-gradient(135deg, rgba(245,168,0,0.06), rgba(147,51,234,0.03));
@@ -212,23 +205,23 @@ export default function BlogPage({ onNavigate }) {
         .bp-featured:hover::after { opacity: 0.5; }
         .bp-featured > .bp-featured-inner { position:relative; z-index:1; background:#050300; border-radius:9px; }
 
-        /* Read more link */
         .bp-readmore {
           display:inline-flex; align-items:center; gap:8px;
-          font-family:'Rajdhani',sans-serif; font-size:11px; letter-spacing:2px; text-transform:uppercase;
+          font-family:'Rajdhani',sans-serif;
+          font-size:13px; letter-spacing:2px; text-transform:uppercase;
           color:#F5A800; font-weight:700; transition: gap 0.25s;
         }
         .bp-card:hover .bp-readmore, .bp-featured:hover .bp-readmore { gap:14px; }
 
-        /* Floating back button — single post view */
         .bp-back {
           display:inline-flex; align-items:center; gap:10px;
           background: rgba(10,8,0,0.9);
           border: 1px solid rgba(245,168,0,0.3);
           border-radius: 30px;
-          padding: 10px 20px 10px 14px;
+          padding: 11px 22px 11px 16px;
           cursor: pointer;
-          font-family:'Rajdhani',sans-serif; font-size:11px; letter-spacing:2px; text-transform:uppercase; font-weight:700;
+          font-family:'Rajdhani',sans-serif;
+          font-size:13px; letter-spacing:2px; text-transform:uppercase; font-weight:700;
           color:#F5A800;
           transition: all 0.3s;
           backdrop-filter: blur(8px);
@@ -242,7 +235,6 @@ export default function BlogPage({ onNavigate }) {
         .bp-back svg { transition: transform 0.3s; }
         .bp-back:hover svg { transform: translateX(-3px); }
 
-        /* Reading progress bar */
         .bp-progress-track {
           position: fixed; top:0; left:0; right:0; height:3px; z-index:50;
           background: rgba(255,255,255,0.04);
@@ -254,10 +246,9 @@ export default function BlogPage({ onNavigate }) {
           transition: width 0.1s linear;
         }
 
-        /* Drop cap */
         .bp-article p:first-of-type::first-letter {
           font-family: 'Cinzel', serif;
-          font-size: 56px;
+          font-size: 62px;
           font-weight: 900;
           color: #F5A800;
           float: left;
@@ -269,23 +260,24 @@ export default function BlogPage({ onNavigate }) {
         .bp-article { font-family:'Cormorant Garamond',serif; }
         .bp-article p { margin: 0 0 1.4em; }
         .bp-article a { color:#F5A800; text-decoration: underline; text-decoration-color: rgba(245,168,0,0.3); }
-        .bp-article h2, .bp-article h3 { font-family:'Cinzel',serif; color:#fff; margin: 1.6em 0 0.6em; }
+        .bp-article h2 { font-family:'Cinzel',serif; color:#fff; margin: 1.6em 0 0.6em; font-size: 26px; }
+        .bp-article h3 { font-family:'Cinzel',serif; color:#fff; margin: 1.6em 0 0.6em; font-size: 22px; }
         .bp-article blockquote {
           border-left: 2px solid #F5A800;
           margin: 1.6em 0; padding: 0.2em 0 0.2em 24px;
           font-style: italic; color: rgba(255,255,255,0.6);
+          font-size: 21px;
         }
         .bp-article img { max-width:100%; border-radius:6px; margin: 1.2em 0; }
 
-        /* Tag chip */
         .bp-chip {
           display:inline-flex; align-items:center;
-          font-family:'Rajdhani',sans-serif; font-size:10px; letter-spacing:2px; text-transform:uppercase;
+          font-family:'Rajdhani',sans-serif;
+          font-size:12px; letter-spacing:2px; text-transform:uppercase;
           color:#F5A800; background: rgba(245,168,0,0.08); border:1px solid rgba(245,168,0,0.2);
-          padding: 5px 12px; border-radius: 20px; font-weight:600;
+          padding: 5px 13px; border-radius: 20px; font-weight:600;
         }
 
-        /* Skeleton loader */
         .bp-skel {
           background: linear-gradient(90deg, rgba(255,255,255,0.02) 0%, rgba(245,168,0,0.06) 50%, rgba(255,255,255,0.02) 100%);
           background-size: 200% 100%;
@@ -293,7 +285,6 @@ export default function BlogPage({ onNavigate }) {
           border-radius: 8px;
         }
 
-        /* Empty state */
         .bp-empty-glyph {
           width: 64px; height:64px; border-radius:50%;
           border: 1px solid rgba(245,168,0,0.25);
@@ -305,9 +296,6 @@ export default function BlogPage({ onNavigate }) {
 
       <div className="bp-page">
 
-        {/* ══════════════════════════════════════
-            SINGLE POST VIEW
-        ══════════════════════════════════════ */}
         {selected ? (
           <div ref={articleRef}>
             <div className="bp-progress-track">
@@ -328,14 +316,14 @@ export default function BlogPage({ onNavigate }) {
 
                 <div className="bp-in" style={{ display: "flex", alignItems: "center", gap: 14, flexWrap: "wrap", marginBottom: 22, animationDelay: "0.05s" }}>
                   <span className="bp-chip">{selected.author}</span>
-                  <span style={{ fontFamily: "Rajdhani,sans-serif", fontSize: 11, color: "rgba(255,255,255,0.3)", letterSpacing: 1 }}>
+                  <span style={{ fontFamily: "Rajdhani,sans-serif", fontSize: 14, color: "rgba(255,255,255,0.3)", letterSpacing: 1 }}>
                     {formatDate(selected.createdAt)} · {readingTime(selected.body)} min read
                   </span>
                 </div>
 
                 <h1 className="bp-in" style={{
                   fontFamily: "Cinzel,serif", fontWeight: 900,
-                  fontSize: isMobile ? "clamp(26px,7vw,34px)" : "clamp(34px,4.5vw,52px)",
+                  fontSize: isMobile ? "clamp(30px,7vw,38px)" : "clamp(38px,4.5vw,56px)",
                   lineHeight: 1.12, color: "#fff", margin: 0,
                   letterSpacing: "-0.5px",
                   animationDelay: "0.12s",
@@ -354,12 +342,12 @@ export default function BlogPage({ onNavigate }) {
             }}>
               <div
                 className="bp-article"
-                style={{ fontSize: isMobile ? 17 : 19, color: "rgba(255,255,255,0.78)", lineHeight: 1.9 }}
+                style={{ fontSize: isMobile ? 20 : 22, color: "rgba(255,255,255,0.78)", lineHeight: 1.95 }}
                 dangerouslySetInnerHTML={{ __html: selected.body }}
               />
 
               <div style={{ marginTop: 56, paddingTop: 32, borderTop: "1px solid rgba(245,168,0,0.12)", display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 16 }}>
-                <div style={{ fontFamily: "Cormorant Garamond,serif", fontSize: 16, fontStyle: "italic", color: "rgba(255,255,255,0.4)" }}>
+                <div style={{ fontFamily: "Cormorant Garamond,serif", fontSize: 19, fontStyle: "italic", color: "rgba(255,255,255,0.4)" }}>
                   Written by <span style={{ color: "#F5A800" }}>{selected.author}</span>
                 </div>
                 <button className="bp-back" onClick={backToList}>
@@ -373,10 +361,8 @@ export default function BlogPage({ onNavigate }) {
           </div>
         ) : (
 
-          /* ══════════════════════════════════════
-              BLOG LIST VIEW
-          ══════════════════════════════════════ */
           <>
+            {/* Blog list hero */}
             <section className="bp-hero" style={{
               minHeight: isMobile ? 280 : 340,
               display: "flex", alignItems: "center", justifyContent: "center",
@@ -392,13 +378,14 @@ export default function BlogPage({ onNavigate }) {
                 </div>
                 <h1 className="bp-in" style={{
                   fontFamily: "Cinzel,serif", fontWeight: 900,
-                  fontSize: isMobile ? "clamp(30px,8vw,40px)" : "clamp(38px,5vw,58px)",
+                  fontSize: isMobile ? "clamp(34px,8vw,44px)" : "clamp(44px,5vw,64px)",
                   margin: 0, animationDelay: "0.1s",
                 }}>
                   <span className="bp-gold">The Blog</span>
                 </h1>
                 <p className="bp-in" style={{
-                  fontFamily: "Cormorant Garamond,serif", fontSize: isMobile ? 15 : 18,
+                  fontFamily: "Cormorant Garamond,serif",
+                  fontSize: isMobile ? 18 : 21,
                   fontStyle: "italic", color: "rgba(255,255,255,0.5)",
                   marginTop: 16, maxWidth: 460, lineHeight: 1.7,
                   animationDelay: "0.2s",
@@ -419,39 +406,40 @@ export default function BlogPage({ onNavigate }) {
               ) : posts.length === 0 ? (
                 <div style={{ textAlign: "center", padding: "70px 0" }}>
                   <div className="bp-empty-glyph">✦</div>
-                  <div style={{ fontFamily: "Cinzel,serif", fontSize: 20, color: "#fff", marginBottom: 10, fontWeight: 700 }}>
+                  <div style={{ fontFamily: "Cinzel,serif", fontSize: 22, color: "#fff", marginBottom: 12, fontWeight: 700 }}>
                     Nothing here yet
                   </div>
-                  <div style={{ fontFamily: "Cormorant Garamond,serif", fontSize: 17, fontStyle: "italic", color: "rgba(255,255,255,0.35)" }}>
+                  <div style={{ fontFamily: "Cormorant Garamond,serif", fontSize: 20, fontStyle: "italic", color: "rgba(255,255,255,0.35)" }}>
                     New teachings are on their way. Check back soon.
                   </div>
                 </div>
               ) : (
                 <div style={{ display: "grid", gap: 22 }}>
 
-                  {/* Featured — first post, larger treatment */}
+                  {/* Featured — first post */}
                   {posts[0] && (
                     <div className="bp-featured bp-in" style={{ animationDelay: "0.05s" }} onClick={() => openPost(posts[0])}>
-                      <div className="bp-featured-inner" style={{ padding: isMobile ? "28px 24px" : "44px 48px" }}>
-                        <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 18, flexWrap: "wrap" }}>
+                      <div className="bp-featured-inner" style={{ padding: isMobile ? "30px 26px" : "46px 50px" }}>
+                        <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 20, flexWrap: "wrap" }}>
                           <span className="bp-chip" style={{ background: "rgba(245,168,0,0.14)" }}>Latest</span>
-                          <span style={{ fontFamily: "Rajdhani,sans-serif", fontSize: 11, letterSpacing: 1, color: "rgba(255,255,255,0.3)" }}>
+                          <span style={{ fontFamily: "Rajdhani,sans-serif", fontSize: 13, letterSpacing: 1, color: "rgba(255,255,255,0.3)" }}>
                             {posts[0].author} · {formatDate(posts[0].createdAt)}
                           </span>
                         </div>
                         <h2 style={{
                           fontFamily: "Cinzel,serif", fontWeight: 700,
-                          fontSize: isMobile ? 22 : 30, color: "#fff",
-                          margin: "0 0 16px", lineHeight: 1.25,
+                          fontSize: isMobile ? 25 : 34, color: "#fff",
+                          margin: "0 0 18px", lineHeight: 1.25,
                         }}>
                           {posts[0].title}
                         </h2>
                         <div
                           style={{
-                            fontFamily: "Cormorant Garamond,serif", fontSize: isMobile ? 15 : 17,
+                            fontFamily: "Cormorant Garamond,serif",
+                            fontSize: isMobile ? 18 : 20,
                             color: "rgba(255,255,255,0.5)", lineHeight: 1.8,
                             display: "-webkit-box", WebkitLineClamp: 2, WebkitBoxOrient: "vertical", overflow: "hidden",
-                            marginBottom: 22,
+                            marginBottom: 24,
                           }}
                           dangerouslySetInnerHTML={{ __html: posts[0].body }}
                         />
@@ -472,27 +460,28 @@ export default function BlogPage({ onNavigate }) {
                         <div
                           key={post.id}
                           className="bp-card bp-in"
-                          style={{ padding: isMobile ? "22px 20px" : "26px 30px", animationDelay: `${0.1 + i * 0.06}s` }}
+                          style={{ padding: isMobile ? "24px 22px" : "28px 32px", animationDelay: `${0.1 + i * 0.06}s` }}
                           onClick={() => openPost(post)}
                         >
-                          <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 12, flexWrap: "wrap" }}>
-                            <span style={{ fontFamily: "Rajdhani,sans-serif", fontSize: 10, letterSpacing: 2, color: "#F5A800", textTransform: "uppercase", fontWeight: 700 }}>
+                          <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 13, flexWrap: "wrap" }}>
+                            <span style={{ fontFamily: "Rajdhani,sans-serif", fontSize: 12, letterSpacing: 2, color: "#F5A800", textTransform: "uppercase", fontWeight: 700 }}>
                               {post.author}
                             </span>
                             <span style={{ width: 3, height: 3, borderRadius: "50%", background: "rgba(255,255,255,0.25)" }} />
-                            <span style={{ fontFamily: "Rajdhani,sans-serif", fontSize: 10, color: "rgba(255,255,255,0.3)", letterSpacing: 1 }}>
+                            <span style={{ fontFamily: "Rajdhani,sans-serif", fontSize: 12, color: "rgba(255,255,255,0.3)", letterSpacing: 1 }}>
                               {formatDate(post.createdAt)} · {readingTime(post.body)} min read
                             </span>
                           </div>
-                          <h2 style={{ fontFamily: "Cinzel,serif", fontSize: isMobile ? 18 : 21, fontWeight: 700, color: "#fff", margin: "0 0 10px", lineHeight: 1.3 }}>
+                          <h2 style={{ fontFamily: "Cinzel,serif", fontSize: isMobile ? 20 : 24, fontWeight: 700, color: "#fff", margin: "0 0 12px", lineHeight: 1.3 }}>
                             {post.title}
                           </h2>
                           <div
                             style={{
-                              fontFamily: "Cormorant Garamond,serif", fontSize: isMobile ? 15 : 16,
+                              fontFamily: "Cormorant Garamond,serif",
+                              fontSize: isMobile ? 17 : 19,
                               color: "rgba(255,255,255,0.42)", lineHeight: 1.75,
                               display: "-webkit-box", WebkitLineClamp: 2, WebkitBoxOrient: "vertical", overflow: "hidden",
-                              marginBottom: 16,
+                              marginBottom: 18,
                             }}
                             dangerouslySetInnerHTML={{ __html: post.body }}
                           />

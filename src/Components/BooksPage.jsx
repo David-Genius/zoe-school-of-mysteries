@@ -250,7 +250,7 @@ export default function BooksPage({ searchQuery = "" }) {
         /* Filter pills */
         .bk-pill {
           font-family: 'Rajdhani', sans-serif;
-          font-size: 11px; letter-spacing: 2px; font-weight: 700;
+          font-size: 15px; letter-spacing: 2px; font-weight: 700;
           text-transform: uppercase; padding: 8px 18px;
           border-radius: 2px; cursor: pointer;
           border: 1px solid rgba(255,255,255,0.1);
@@ -301,7 +301,7 @@ export default function BooksPage({ searchQuery = "" }) {
         .bk-buy {
           display: inline-block;
           font-family: 'Rajdhani', sans-serif;
-          font-size: 11px; letter-spacing: 3px;
+          font-size: 15px; letter-spacing: 3px;
           text-transform: uppercase; font-weight: 700;
           color: #000; background: #F5A800;
           padding: 12px 28px; border-radius: 2px;
@@ -317,7 +317,7 @@ export default function BooksPage({ searchQuery = "" }) {
           border: 1px solid rgba(245,168,0,0.2);
           border-radius: 4px; padding: 12px 18px;
           color: #fff; font-family: 'Rajdhani', sans-serif;
-          font-size: 14px; outline: none; width: 100%;
+          font-size: 18px; outline: none; width: 100%;
           max-width: 360px; transition: border-color 0.3s;
           letter-spacing: 0.5px;
         }
@@ -327,7 +327,7 @@ export default function BooksPage({ searchQuery = "" }) {
         .bk-tag {
           display: inline-block;
           font-family: 'Rajdhani', sans-serif;
-          font-size: 9px; letter-spacing: 3px;
+          font-size: 13px; letter-spacing: 3px;
           text-transform: uppercase; font-weight: 700;
           padding: 3px 10px; border-radius: 2px;
           margin-bottom: 8px; color: #fff;
@@ -361,6 +361,28 @@ export default function BooksPage({ searchQuery = "" }) {
           font-size: 20px; font-style: italic;
           color: rgba(255,255,255,0.3);
         }
+
+        @media (max-width: 640px) {
+  .bk-title {
+    font-size: 18px !important;
+  }
+
+  .bk-buy {
+    font-size: 15px !important;
+  }
+
+  .bk-search {
+    font-size: 18px !important;
+  }
+
+  .bk-pill {
+    font-size: 15px !important;
+  }
+
+  .bk-tag {
+    font-size: 13px !important;
+  }
+}
       `}</style>
 
       <div className="bk-page" style={{
@@ -406,7 +428,7 @@ export default function BooksPage({ searchQuery = "" }) {
 
             <p style={{
               fontFamily: "Cormorant Garamond, serif",
-              fontSize: isMobile ? 16 : 20,
+              fontSize: isMobile ? 20 : 24,
               fontWeight: 300, fontStyle: "italic",
               color: "rgba(255,255,255,0.55)",
               maxWidth: 520, lineHeight: 1.8, marginBottom: 36,
@@ -424,7 +446,7 @@ export default function BooksPage({ searchQuery = "" }) {
               ].map((s, i) => (
                 <div key={i}>
                   <div style={{ fontFamily:"Cinzel,serif", fontSize:isMobile?24:32, fontWeight:900, color:"#F5A800", lineHeight:1, marginBottom:4, textShadow:"0 0 20px rgba(245,168,0,0.4)" }}>{s.num}</div>
-                  <div style={{ fontFamily:"Rajdhani,sans-serif", fontSize:9, letterSpacing:3, textTransform:"uppercase", color:"rgba(255,255,255,0.3)", fontWeight:600 }}>{s.label}</div>
+                  <div style={{ fontFamily:"Rajdhani,sans-serif", fontSize:14, letterSpacing:3, textTransform:"uppercase", color:"rgba(255,255,255,0.3)", fontWeight:600 }}>{s.label}</div>
                 </div>
               ))}
             </div>
@@ -452,7 +474,7 @@ export default function BooksPage({ searchQuery = "" }) {
                   style={{ position:"absolute", right:14, top:"50%", transform:"translateY(-50%)", color:"rgba(255,255,255,0.3)", cursor:"pointer", fontSize:18, lineHeight:1 }}>×</span>
               )}
             </div>
-            <div style={{ fontFamily:"Rajdhani,sans-serif", fontSize:12, letterSpacing:2, color:"rgba(255,255,255,0.3)" }}>
+            <div style={{ fontFamily:"Rajdhani,sans-serif", fontSize:16, letterSpacing:2, color:"rgba(255,255,255,0.3)" }}>
               {filtered.length} book{filtered.length !== 1 ? "s" : ""} found
             </div>
           </div>
@@ -510,7 +532,7 @@ export default function BooksPage({ searchQuery = "" }) {
 
                   {/* Card body */}
                   <div style={{ padding: isMobile ? "14px 14px 16px" : "18px 18px 20px" }}>
-                    <div className="bk-title" style={{ fontSize: isMobile ? 13 : 15 }}>
+                    <div className="bk-title" style={{ fontSize: isMobile ? 18 : 22 }}>
                       {b.title}
                     </div>
 
@@ -546,7 +568,7 @@ export default function BooksPage({ searchQuery = "" }) {
             <h2 style={{ fontFamily:"Cinzel,serif", fontSize:isMobile?24:36, fontWeight:700, color:"#fff", marginBottom:14 }}>
               More Books Coming Soon
             </h2>
-            <p style={{ fontFamily:"Cormorant Garamond,serif", fontSize:isMobile?15:18, fontStyle:"italic", color:"rgba(255,255,255,0.45)", maxWidth:460, margin:"0 auto 32px", lineHeight:1.8 }}>
+            <p style={{ fontFamily:"Cormorant Garamond,serif", fontSize:isMobile?18:22, fontStyle:"italic", color:"rgba(255,255,255,0.45)", maxWidth:460, margin:"0 auto 32px", lineHeight:1.8 }}>
               New revelations are always being written. Follow us to be the first to know when new books drop.
             </p>
             <a href="https://selar.com/m/Hassanololade" target="_blank" rel="noopener noreferrer" style={{ fontFamily:"Rajdhani,sans-serif", fontSize:12, letterSpacing:3, textTransform:"uppercase", fontWeight:700, color:"#000", background:"#F5A800", padding:"15px 44px", borderRadius:2, textDecoration:"none", display:"inline-block", transition:"all 0.3s" }}>

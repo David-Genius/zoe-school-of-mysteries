@@ -252,12 +252,12 @@ export default function AdminPanel({ onExit }) {
           display:flex; align-items:center; gap:12px;
           padding:15px 24px; cursor:pointer; transition:all 0.2s;
           color:rgba(255,255,255,0.45); border-left:3px solid transparent;
-          font-size:15px;          /* ↑ was 13px */
+        font-size:18px;          /* ↑ was 15px */
           letter-spacing:1.5px; text-transform:uppercase; font-weight:600;
         }
         .adm-tab:hover  { color:rgba(255,255,255,0.75); background:rgba(255,255,255,0.03); }
         .adm-tab.active { color:#F5A800; border-left-color:#F5A800; background:rgba(245,168,0,0.07); }
-        .adm-tab span   { font-size:20px; }  /* icons slightly bigger too */
+        .adm-tab span   { font-size:28px; }  /* icons slightly bigger too */
 
         /* ── CARDS ── */
         .adm-stat-card {
@@ -356,6 +356,81 @@ export default function AdminPanel({ onExit }) {
           .adm-confirm-box  { width:95% !important; padding:24px !important; }
           .adm-stat-card    { padding:18px !important; }
           .adm-toast        { right:12px !important; left:12px !important; bottom:12px !important; width:auto !important; }
+
+  /* Main headings */
+  .adm-content h1,
+  .adm-content h2,
+  .adm-content h3 {
+    font-size: 28px !important;
+  }
+
+  /* Dashboard numbers */
+  .adm-stat-card div {
+    font-size: 18px;
+  }
+
+  /* Labels */
+  .adm-label {
+    font-size: 14px !important;
+  }
+
+  /* Table text */
+  .adm-table-row {
+    font-size: 16px !important;
+  }
+
+  /* User names */
+  .adm-table-row div {
+    font-size: 16px !important;
+  }
+
+  /* Search inputs */
+  .adm-search {
+    font-size: 18px !important;
+    padding: 14px 18px !important;
+  }
+
+  /* Buttons */
+  .adm-btn {
+    font-size: 16px !important;
+    padding: 12px 18px !important;
+  }
+
+  /* Filter buttons */
+  .adm-filter-pill {
+    font-size: 14px !important;
+  }
+
+  /* Activity text */
+  .adm-stat-card p,
+  .adm-stat-card span {
+    font-size: 16px !important;
+    line-height: 1.7;
+  }
+
+  .adm-label {
+  font-size: 16px !important;
+}
+
+.adm-search {
+  font-size: 18px !important;
+}
+
+.adm-btn {
+  font-size: 16px !important;
+}
+
+.adm-badge {
+  font-size: 14px !important;
+}
+
+.adm-table-row {
+  font-size: 16px !important;
+}
+
+.adm-stat-card {
+  font-size: 18px !important;
+}
         }
 
         @media (max-width: 480px) {
@@ -486,7 +561,7 @@ export default function AdminPanel({ onExit }) {
                     <div style={{ display:"flex", justifyContent:"space-between", alignItems:"flex-start", gap:12, flexWrap:"wrap" }}>
                       <div style={{ flex:1 }}>
                         <div style={{ fontFamily:"Cinzel,serif", fontSize:16, fontWeight:700, color:"#fff", marginBottom:5 }}>{post.title}</div>
-                        <div style={{ fontFamily:"Rajdhani,sans-serif", fontSize:12, color:"rgba(255,255,255,0.3)", letterSpacing:1 }}>
+                        <div style={{ fontFamily:"Rajdhani,sans-serif", fontSize:14, color:"rgba(255,255,255,0.3)", letterSpacing:1 }}>
                           {post.author} · {post.createdAt?.toDate?.().toLocaleDateString("en-GB",{day:"numeric",month:"short",year:"numeric"})}
                         </div>
                       </div>
@@ -607,7 +682,7 @@ export default function AdminPanel({ onExit }) {
                         <div style={{ fontSize:20, flexShrink:0 }}>{ACTIVITY_ICONS[a.type]||"•"}</div>
                         <div style={{ flex:1 }}>
                           <div style={{ fontFamily:"Rajdhani,sans-serif", fontSize:15, color:"rgba(255,255,255,0.7)" }}>{a.description}</div>
-                          <div style={{ fontFamily:"Rajdhani,sans-serif", fontSize:12, color:"rgba(255,255,255,0.25)", letterSpacing:1, marginTop:2 }}>{formatTime(a.timestamp)}</div>
+                          <div style={{ fontFamily:"Rajdhani,sans-serif", fontSize:14, color:"rgba(255,255,255,0.25)", letterSpacing:1, marginTop:2 }}>{formatTime(a.timestamp)}</div>
                         </div>
                       </div>
                     ))}
@@ -643,7 +718,7 @@ export default function AdminPanel({ onExit }) {
                     <div key={i} className="adm-table-row" style={{ gridTemplateColumns:isMobile?"1fr 90px":"2fr 2fr 110px 90px 130px", cursor:"pointer" }} onClick={()=>setSelectedUser(u)}>
                       <div>
                         <div style={{ fontFamily:"Cinzel,serif", fontSize:14, fontWeight:600, color:"#fff", marginBottom:3 }}>{u.name}</div>
-                        <div style={{ fontFamily:"Rajdhani,sans-serif", fontSize:12, color:"rgba(255,255,255,0.35)" }}>{u.email}</div>
+                        <div style={{ fontFamily:"Rajdhani,sans-serif", fontSize:15, color:"rgba(255,255,255,0.35)" }}>{u.email}</div>
                       </div>
                       {!isMobile && <div style={{ fontFamily:"Rajdhani,sans-serif", fontSize:13, color:"rgba(255,255,255,0.4)", alignSelf:"center" }}>{formatDate(u.createdAt)}</div>}
                       {!isMobile && <div style={{ alignSelf:"center" }}><span className="adm-badge" style={{ background:u.role==="admin"?"rgba(147,51,234,0.15)":"rgba(255,255,255,0.06)", color:u.role==="admin"?"#9333EA":"rgba(255,255,255,0.4)" }}>{u.role}</span></div>}
@@ -684,12 +759,12 @@ export default function AdminPanel({ onExit }) {
                     <div key={i} className="adm-table-row" style={{ gridTemplateColumns:isMobile?"1fr 110px":"2fr 1fr 110px 90px 90px" }}>
                       <div>
                         <div style={{ fontFamily:"Cinzel,serif", fontSize:14, color:"#fff", marginBottom:3 }}>{g.name}</div>
-                        <div style={{ fontFamily:"Rajdhani,sans-serif", fontSize:12, color:"rgba(255,255,255,0.3)" }}>{g.email}</div>
+                        <div style={{ fontFamily:"Rajdhani,sans-serif", fontSize:14, color:"rgba(255,255,255,0.3)" }}>{g.email}</div>
                       </div>
                       {!isMobile && <div style={{ fontFamily:"Rajdhani,sans-serif", fontSize:13, color:"rgba(255,255,255,0.5)", alignSelf:"center" }}>{g.fund}</div>}
                       <div style={{ fontFamily:"Cinzel,serif", fontSize:15, fontWeight:700, color:"#F5A800", alignSelf:"center" }}>₦{g.amount?.toLocaleString()}</div>
-                      {!isMobile && <div style={{ fontFamily:"Rajdhani,sans-serif", fontSize:12, color:"rgba(255,255,255,0.3)", alignSelf:"center" }}>{g.method}</div>}
-                     <div style={{ fontFamily:"Rajdhani,sans-serif", fontSize:12, color:"rgba(255,255,255,0.3)", alignSelf:"center" }}>
+                      {!isMobile && <div style={{ fontFamily:"Rajdhani,sans-serif", fontSize:14, color:"rgba(255,255,255,0.3)", alignSelf:"center" }}>{g.method}</div>}
+                     <div style={{ fontFamily:"Rajdhani,sans-serif", fontSize:14, color:"rgba(255,255,255,0.3)", alignSelf:"center" }}>
   {g.createdAt?.toDate 
     ? formatDate(g.createdAt)
     : g.createdAt?.seconds
@@ -721,7 +796,7 @@ export default function AdminPanel({ onExit }) {
                       </div>
                       <div style={{ flex:1 }}>
                         <div style={{ fontFamily:"Rajdhani,sans-serif", fontSize:15, color:"rgba(255,255,255,0.75)", letterSpacing:0.5 }}>{a.description}</div>
-                        <div style={{ fontFamily:"Rajdhani,sans-serif", fontSize:12, color:"rgba(255,255,255,0.25)", marginTop:3, letterSpacing:1 }}>UID: {a.uid?.substring(0,12)}... · {formatTime(a.timestamp)}</div>
+                        <div style={{ fontFamily:"Rajdhani,sans-serif", fontSize:14, color:"rgba(255,255,255,0.25)", marginTop:3, letterSpacing:1 }}>UID: {a.uid?.substring(0,12)}... · {formatTime(a.timestamp)}</div>
                       </div>
                       <div style={{ fontFamily:"Rajdhani,sans-serif", fontSize:11, letterSpacing:2, textTransform:"uppercase", color:"rgba(255,255,255,0.2)", whiteSpace:"nowrap" }}>{formatDate(a.timestamp)}</div>
                     </div>
@@ -785,7 +860,7 @@ export default function AdminPanel({ onExit }) {
                           </div>
                           <select value={req.status||"pending"}
                             onChange={async e => { await updatePrayerStatus(req.id,e.target.value); setPrayer(await getPrayerStats()); showToast("Prayer status updated ✓"); }}
-                            style={{ background:"#111", border:`1px solid ${req.status==="answered"?"rgba(34,197,94,0.4)":req.status==="praying"?"rgba(6,182,212,0.4)":"rgba(245,168,0,0.4)"}`, color:req.status==="answered"?"#22c55e":req.status==="praying"?"#06b6d4":"#F5A800", fontFamily:"Rajdhani,sans-serif", fontSize:12, letterSpacing:2, padding:"6px 14px", borderRadius:2, cursor:"pointer", outline:"none" }}>
+                            style={{ background:"#111", border:`1px solid ${req.status==="answered"?"rgba(34,197,94,0.4)":req.status==="praying"?"rgba(6,182,212,0.4)":"rgba(245,168,0,0.4)"}`, color:req.status==="answered"?"#22c55e":req.status==="praying"?"#06b6d4":"#F5A800", fontFamily:"Rajdhani,sans-serif", fontSize:14, letterSpacing:2, padding:"6px 14px", borderRadius:2, cursor:"pointer", outline:"none" }}>
                             <option value="pending">⏳ Pending</option>
                             <option value="praying">✨ Being Prayed For</option>
                             <option value="answered">🙌 Answered</option>
@@ -794,7 +869,7 @@ export default function AdminPanel({ onExit }) {
                         <p style={{ fontFamily:"Cormorant Garamond,serif", fontSize:16, fontWeight:300, color:"rgba(255,255,255,0.6)", lineHeight:1.75, marginBottom:10 }}>
                           {req.request?.length>200?req.request.substring(0,200)+"…":req.request}
                         </p>
-                        <div style={{ fontFamily:"Rajdhani,sans-serif", fontSize:12, color:"rgba(255,255,255,0.22)", letterSpacing:1 }}>
+                        <div style={{ fontFamily:"Rajdhani,sans-serif", fontSize:14, color:"rgba(255,255,255,0.22)", letterSpacing:1 }}>
                           {req.isAnonymous?"Anonymous":req.name}{!req.isAnonymous&&req.email?` · ${req.email}`:""} · {formatDate(req.createdAt)}
                         </div>
                       </div>

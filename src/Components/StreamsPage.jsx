@@ -16,22 +16,15 @@ function useWidth() {
 // CONFIG — update these whenever you go live
 // ─────────────────────────────────────────────────────────────────
 
-// Your YouTube CHANNEL ID (for the live embed)
-const YOUTUBE_CHANNEL_ID = "UC4YA6MGcBrBeRzl2Q7WroTA";
-
-// When you go live on YouTube, paste the live video ID here
+const YOUTUBE_CHANNEL_ID   = "UC4YA6MGcBrBeRzl2Q7WroTA";
 const YOUTUBE_LIVE_VIDEO_ID = ""; // e.g. "abc123XYZ" — leave empty when not live
-
-// Your Facebook PAGE — used for all Facebook links (no embed)
-const FACEBOOK_PAGE_URL = "https://www.facebook.com/share/1BPBCLT1vq/";
-
-// Community links
-const WHATSAPP_GROUP_LINK = "https://chat.whatsapp.com/FKZqlGXZwXv39iFFqfa9N4";
-const TELEGRAM_LINK       = "https://t.me/+KtrkQ-ACzkNlNTFk";
-const YOUTUBE_CHANNEL_URL = `https://www.youtube.com/channel/${YOUTUBE_CHANNEL_ID}`;
+const FACEBOOK_PAGE_URL    = "https://www.facebook.com/share/1BPBCLT1vq/";
+const WHATSAPP_GROUP_LINK  = "https://chat.whatsapp.com/FKZqlGXZwXv39iFFqfa9N4";
+const TELEGRAM_LINK        = "https://t.me/+KtrkQ-ACzkNlNTFk";
+const YOUTUBE_CHANNEL_URL  = `https://www.youtube.com/channel/${YOUTUBE_CHANNEL_ID}`;
 
 // ─────────────────────────────────────────────────────────────────
-// PAST STREAMS — add a new entry here after every service
+// PAST STREAMS
 // ─────────────────────────────────────────────────────────────────
 const pastStreams = [
   {
@@ -62,20 +55,6 @@ const pastStreams = [
     youtubeId: "RgyeTfOi1xE",
     tag: "Conference",
   },
-  // {
-  //   title: "School of Mysteries — Session 5",
-  //   speaker: "Pastor Emmanuel Zoe",
-  //   date: "Mar 10, 2025",
-  //   youtubeId: "9bZkp7q19f0",
-  //   tag: "Course",
-  // },
-  // {
-  //   title: "Night of Worship — March Edition",
-  //   speaker: "Zoe Worship Team",
-  //   date: "Mar 7, 2025",
-  //   youtubeId: "CevxZvSJLk8",
-  //   tag: "Worship",
-  // },
 ];
 
 const filters = ["All", "Sermon", "Teaching", "Worship", "Youth", "Conference", "Course"];
@@ -142,12 +121,12 @@ export default function StreamsPage() {
         @keyframes sp-shimmer  { 0%{background-position:-200% center} 100%{background-position:200% center} }
         @keyframes sp-floatIn  { from{opacity:0; transform:translateY(-12px)} to{opacity:1; transform:translateY(0)} }
 
-        .sp-page { animation: sp-fadeUp 0.8s ease forwards; font-family:'Rajdhani',sans-serif; background:#000; }
+        .sp-page { animation: sp-fadeUp 0.8s ease forwards; font-family:'Rajdhani',sans-serif; background:#000; font-size:17px; }
         .sp-in { opacity:0; animation: sp-fadeUp 0.8s ease forwards; }
 
         .sp-eyebrow {
           display:flex; align-items:center; gap:14px; margin-bottom:22px;
-          font-size:11px; letter-spacing:6px; text-transform:uppercase; color:#F5A800;
+          font-size:14px; letter-spacing:5px; text-transform:uppercase; color:#F5A800;
           font-weight:600;
         }
         .sp-eyebrow-line { width:32px; height:1px; background:linear-gradient(to right,#F5A800,transparent); }
@@ -166,42 +145,10 @@ export default function StreamsPage() {
         }
         .sp-video-frame iframe { position:absolute; inset:0; width:100%; height:100%; border:none; }
 
-        /* Facebook direct-link button */
-        .sp-fb-watch-btn {
-          display:flex; align-items:center; justify-content:center; gap:10px;
-          width:100%; padding:22px; box-sizing:border-box;
-          background:linear-gradient(135deg,#1a1a2e 0%,#16213e 50%,#0f3460 100%);
-          border:1px solid rgba(24,119,242,0.3);
-          text-decoration:none; cursor:pointer;
-          transition: border-color 0.3s, background 0.3s;
-          position:absolute; inset:0; height:100%;
-        }
-        .sp-fb-watch-btn:hover {
-          border-color:rgba(24,119,242,0.7);
-          background:linear-gradient(135deg,#1e2a4a 0%,#1a2d55 50%,#133b70 100%);
-        }
-        .sp-fb-watch-btn-inner {
-          display:flex; flex-direction:column; align-items:center; gap:10px;
-        }
-        .sp-fb-watch-label {
-          font-family:'Rajdhani',sans-serif; font-size:13px; letter-spacing:2px;
-          font-weight:600; text-transform:uppercase; color:rgba(255,255,255,0.55);
-        }
-        .sp-fb-watch-cta {
-          display:inline-flex; align-items:center; gap:8px;
-          font-family:'Cinzel',serif; font-size:15px; font-weight:700; color:#fff;
-          padding:10px 24px;
-          border:1px solid rgba(255,255,255,0.2);
-          transition: border-color 0.25s, color 0.25s;
-        }
-        .sp-fb-watch-btn:hover .sp-fb-watch-cta {
-          border-color:rgba(24,119,242,0.8); color:#5b9fff;
-        }
-
-        /* Connect row — text links, no boxes */
+        /* Connect row — text links */
         .sp-connect-link {
-          display:inline-flex; align-items:center; gap:7px;
-          font-size:11px; letter-spacing:1.5px; font-weight:600; text-transform:uppercase;
+          display:inline-flex; align-items:center; gap:8px;
+          font-size:14px; letter-spacing:1.5px; font-weight:600; text-transform:uppercase;
           text-decoration:none; color:rgba(255,255,255,0.45);
           transition: color 0.25s; padding-bottom:2px; border-bottom:1px solid transparent;
         }
@@ -209,7 +156,7 @@ export default function StreamsPage() {
 
         /* Filter — text-based, underline active state */
         .sp-filter {
-          font-size:11px; letter-spacing:2px; font-weight:600; text-transform:uppercase;
+          font-size:14px; letter-spacing:2px; font-weight:600; text-transform:uppercase;
           padding:0 0 8px; cursor:pointer; border:none; background:transparent;
           color:rgba(255,255,255,0.3); border-bottom:1px solid transparent;
           transition: color 0.25s, border-color 0.25s; white-space:nowrap;
@@ -233,17 +180,18 @@ export default function StreamsPage() {
 
         .sp-row-watch {
           display:inline-flex; align-items:center; gap:8px;
-          font-size:10.5px; letter-spacing:2px; font-weight:600; text-transform:uppercase;
+          font-size:14px; letter-spacing:2px; font-weight:600; text-transform:uppercase;
           text-decoration:none; color:rgba(255,255,255,0.4);
           transition: color 0.25s, gap 0.25s;
         }
-        .sp-row:hover .sp-row-watch { color:#F5A800; gap:12px; }
+        .sp-row:hover .sp-row-watch { color:#F5A800; gap:13px; }
 
         /* CTA links */
         .sp-cta-link {
           display:flex; align-items:center; justify-content:space-between;
-          padding:22px 0; border-top:1px solid rgba(255,255,255,0.08);
+          padding:24px 0; border-top:1px solid rgba(255,255,255,0.08);
           text-decoration:none; color:#fff;
+          font-size:18px; letter-spacing:1px; font-weight:600;
           transition: padding-left 0.3s, color 0.3s;
         }
         .sp-cta-link:hover { padding-left:10px; color:#F5A800; }
@@ -260,14 +208,14 @@ export default function StreamsPage() {
         }
         .sp-modal-box {
           background:#070500; border:1px solid rgba(245,168,0,0.18);
-          padding:48px 40px; max-width:440px; width:100%;
+          padding:52px 44px; max-width:460px; width:100%;
           animation: sp-floatIn 0.3s ease; position:relative;
         }
         .sp-modal-link {
           display:flex; align-items:center; justify-content:space-between;
-          padding:16px 0; border-top:1px solid rgba(255,255,255,0.08);
+          padding:18px 0; border-top:1px solid rgba(255,255,255,0.08);
           text-decoration:none; color:rgba(255,255,255,0.7);
-          font-size:12px; letter-spacing:2px; text-transform:uppercase; font-weight:600;
+          font-size:15px; letter-spacing:2px; text-transform:uppercase; font-weight:600;
           transition: color 0.25s, padding-left 0.3s;
         }
         .sp-modal-link:last-of-type { border-bottom:1px solid rgba(255,255,255,0.08); }
@@ -288,34 +236,34 @@ export default function StreamsPage() {
             <button onClick={() => setNotifyModal(false)} style={{
               position:"absolute", top:20, right:22,
               background:"none", border:"none",
-              color:"rgba(255,255,255,0.35)", cursor:"pointer", fontSize:20, lineHeight:1,
+              color:"rgba(255,255,255,0.35)", cursor:"pointer", fontSize:24, lineHeight:1,
             }}>✕</button>
 
             <div className="sp-eyebrow"><span className="sp-eyebrow-line"/>Stay Connected</div>
             <h3 style={{
-              fontFamily:"Cinzel,serif", fontSize:26, fontWeight:700,
-              color:"#fff", marginBottom:14, lineHeight:1.2,
+              fontFamily:"Cinzel,serif", fontSize:30, fontWeight:700,
+              color:"#fff", marginBottom:16, lineHeight:1.2,
             }}>Never Miss<br/>A Service</h3>
             <p style={{
-              fontFamily:"Cormorant Garamond,serif", fontSize:16, fontStyle:"italic",
-              color:"rgba(255,255,255,0.45)", marginBottom:8, lineHeight:1.7,
+              fontFamily:"Cormorant Garamond,serif", fontSize:19, fontStyle:"italic",
+              color:"rgba(255,255,255,0.45)", marginBottom:10, lineHeight:1.7,
             }}>
               Choose a channel below. All instant, all free.
             </p>
 
             <div style={{ display:"flex", flexDirection:"column" }}>
               <a href={WHATSAPP_GROUP_LINK} target="_blank" rel="noopener noreferrer" className="sp-modal-link">
-                WhatsApp Group <WAIcon w={15} h={15}/>
+                WhatsApp Group <WAIcon w={18} h={18}/>
               </a>
               <a href={`https://www.youtube.com/channel/${YOUTUBE_CHANNEL_ID}?sub_confirmation=1`}
                 target="_blank" rel="noopener noreferrer" className="sp-modal-link">
-                Subscribe — YouTube <YTIcon w={15} h={11}/>
+                Subscribe — YouTube <YTIcon w={18} h={14}/>
               </a>
               <a href={FACEBOOK_PAGE_URL} target="_blank" rel="noopener noreferrer" className="sp-modal-link">
-                Follow — Facebook <FBIcon w={14} h={14}/>
+                Follow — Facebook <FBIcon w={17} h={17}/>
               </a>
               <a href={TELEGRAM_LINK} target="_blank" rel="noopener noreferrer" className="sp-modal-link">
-                Telegram Channel <TGIcon w={15} h={15}/>
+                Telegram Channel <TGIcon w={18} h={18}/>
               </a>
             </div>
           </div>
@@ -366,9 +314,9 @@ export default function StreamsPage() {
               gap:32, marginTop:48, animationDelay:"0.25s",
             }}>
               <p style={{
-                fontFamily:"Cormorant Garamond,serif", fontSize:isMobile ? 17 : 21,
+                fontFamily:"Cormorant Garamond,serif", fontSize:isMobile ? 19 : 23,
                 fontWeight:300, fontStyle:"italic", color:"rgba(255,255,255,0.55)",
-                maxWidth:420, lineHeight:1.8, margin:0,
+                maxWidth:440, lineHeight:1.8, margin:0,
               }}>
                 Every Sunday, and every special service — streamed in full,
                 wherever you happen to be standing.
@@ -376,10 +324,10 @@ export default function StreamsPage() {
 
               <div style={{ display:"flex", gap:28, flexWrap:"wrap" }}>
                 <a href={YOUTUBE_CHANNEL_URL} target="_blank" rel="noopener noreferrer" className="sp-connect-link">
-                  <YTIcon w={13} h={10}/> YouTube
+                  <YTIcon w={16} h={12}/> YouTube
                 </a>
                 <a href={FACEBOOK_PAGE_URL} target="_blank" rel="noopener noreferrer" className="sp-connect-link">
-                  <FBIcon w={12} h={12}/> Facebook
+                  <FBIcon w={15} h={15}/> Facebook
                 </a>
                 <button onClick={() => setNotifyModal(true)} style={{
                   background:"none", border:"none", cursor:"pointer", padding:0,
@@ -392,7 +340,7 @@ export default function StreamsPage() {
         </section>
 
         {/* ══════════════════════════════════════
-            2. LIVE PLAYER — YouTube only + Facebook direct link
+            2. LIVE PLAYER
         ══════════════════════════════════════ */}
         <section id="player" style={{
           padding:`${secPad}px ${sidePad}px`,
@@ -400,7 +348,7 @@ export default function StreamsPage() {
         }}>
           <div style={{
             display:"grid",
-            gridTemplateColumns: isMobile ? "1fr" : "minmax(0,1fr) 260px",
+            gridTemplateColumns: isMobile ? "1fr" : "minmax(0,1fr) 280px",
             gap: isMobile ? 36 : 64,
           }}>
             {/* Player column */}
@@ -408,21 +356,21 @@ export default function StreamsPage() {
               <div className="sp-eyebrow"><span className="sp-eyebrow-line"/>This Sunday</div>
               <h2 style={{
                 fontFamily:"Cinzel,serif", fontWeight:700,
-                fontSize:isMobile ? 28 : isTablet ? 36 : 46,
-                color:"#fff", marginBottom:28, lineHeight:1.1,
+                fontSize:isMobile ? 32 : isTablet ? 40 : 50,
+                color:"#fff", marginBottom:32, lineHeight:1.1,
               }}>
                 Sunday Worship<br/>Experience
               </h2>
 
               {/* YouTube live embed */}
-              <div style={{ marginBottom:28 }}>
+              <div style={{ marginBottom:32 }}>
                 <div style={{
-                  display:"flex", alignItems:"center", gap:8, marginBottom:14,
+                  display:"flex", alignItems:"center", gap:10, marginBottom:16,
                 }}>
-                  <YTIcon w={14} h={11}/>
+                  <YTIcon w={16} h={13}/>
                   <span style={{
-                    fontSize:11, letterSpacing:3, textTransform:"uppercase",
-                    fontWeight:600, color:"rgba(255,255,255,0.5)",
+                    fontSize:14, letterSpacing:3, textTransform:"uppercase",
+                    fontWeight:600, color:"rgba(255,255,255,0.55)",
                   }}>Live on YouTube</span>
                 </div>
                 <div className="sp-video-frame">
@@ -434,35 +382,34 @@ export default function StreamsPage() {
                     allowFullScreen
                   />
                 </div>
-                <div style={{ display:"flex", gap:28, marginTop:16, flexWrap:"wrap" }}>
+                <div style={{ display:"flex", gap:28, marginTop:18, flexWrap:"wrap" }}>
                   <a href={YOUTUBE_CHANNEL_URL} target="_blank" rel="noopener noreferrer" className="sp-connect-link">
-                    <YTIcon w={11} h={9}/> Comment on YouTube
+                    <YTIcon w={14} h={11}/> Comment on YouTube
                   </a>
                   <a href={WHATSAPP_GROUP_LINK} target="_blank" rel="noopener noreferrer" className="sp-connect-link">
-                    <WAIcon w={12} h={12}/> WhatsApp Group
+                    <WAIcon w={14} h={14}/> WhatsApp Group
                   </a>
                 </div>
               </div>
 
-              {/* Facebook — direct link block (no embed) */}
+              {/* Facebook — direct link block */}
               <div>
                 <div style={{
-                  display:"flex", alignItems:"center", gap:8, marginBottom:14,
+                  display:"flex", alignItems:"center", gap:10, marginBottom:16,
                 }}>
-                  <FBIcon w={12} h={12}/>
+                  <FBIcon w={14} h={14}/>
                   <span style={{
-                    fontSize:11, letterSpacing:3, textTransform:"uppercase",
-                    fontWeight:600, color:"rgba(255,255,255,0.5)",
+                    fontSize:14, letterSpacing:3, textTransform:"uppercase",
+                    fontWeight:600, color:"rgba(255,255,255,0.55)",
                   }}>Also Live on Facebook</span>
                 </div>
                 <div style={{
                   position:"relative", width:"100%", paddingTop:"22%",
-                  minHeight:110,
+                  minHeight:120,
                   background:"linear-gradient(135deg,#0d1b2e 0%,#0f2342 100%)",
                   border:"1px solid rgba(24,119,242,0.2)",
                   overflow:"hidden",
                 }}>
-                  {/* decorative circles */}
                   <div style={{
                     position:"absolute", top:"-40%", right:"-5%",
                     width:200, height:200, borderRadius:"50%",
@@ -472,12 +419,12 @@ export default function StreamsPage() {
                   <div style={{
                     position:"absolute", inset:0,
                     display:"flex", alignItems:"center", justifyContent:"center",
-                    flexDirection:"column", gap:12,
-                    padding:20,
+                    flexDirection:"column", gap:14,
+                    padding:24,
                   }}>
                     <p style={{
-                      fontFamily:"Cormorant Garamond,serif", fontSize:14, fontStyle:"italic",
-                      color:"rgba(255,255,255,0.4)", margin:0, textAlign:"center", lineHeight:1.6,
+                      fontFamily:"Cormorant Garamond,serif", fontSize:17, fontStyle:"italic",
+                      color:"rgba(255,255,255,0.45)", margin:0, textAlign:"center", lineHeight:1.6,
                     }}>
                       We stream simultaneously on Facebook. Watch and join the conversation there.
                     </p>
@@ -486,10 +433,10 @@ export default function StreamsPage() {
                       target="_blank"
                       rel="noopener noreferrer"
                       style={{
-                        display:"inline-flex", alignItems:"center", gap:9,
-                        fontFamily:"Rajdhani,sans-serif", fontSize:12, letterSpacing:2.5,
+                        display:"inline-flex", alignItems:"center", gap:10,
+                        fontFamily:"Rajdhani,sans-serif", fontSize:15, letterSpacing:2.5,
                         fontWeight:700, textTransform:"uppercase", textDecoration:"none",
-                        color:"#fff", padding:"10px 22px",
+                        color:"#fff", padding:"12px 26px",
                         border:"1px solid rgba(24,119,242,0.5)",
                         background:"rgba(24,119,242,0.1)",
                         transition:"background 0.25s, border-color 0.25s",
@@ -503,7 +450,7 @@ export default function StreamsPage() {
                         e.currentTarget.style.borderColor = "rgba(24,119,242,0.5)";
                       }}
                     >
-                      <FBIcon w={13} h={13}/> Watch on Facebook <ExternalIcon size={11}/>
+                      <FBIcon w={15} h={15}/> Watch on Facebook <ExternalIcon size={13}/>
                     </a>
                   </div>
                 </div>
@@ -518,17 +465,17 @@ export default function StreamsPage() {
               paddingTop: isMobile ? 28 : 0,
             }}>
               <p style={{
-                fontFamily:"Cormorant Garamond,serif", fontSize:17, fontStyle:"italic",
-                color:"rgba(255,255,255,0.45)", lineHeight:1.85, marginBottom:24,
+                fontFamily:"Cormorant Garamond,serif", fontSize:19, fontStyle:"italic",
+                color:"rgba(255,255,255,0.45)", lineHeight:1.85, marginBottom:26,
               }}>
                 Service streams in real time on both platforms. YouTube carries
                 the embedded live player here. For Facebook, tap the link to
                 join directly on their platform.
               </p>
-              <div style={{ width:32, height:1, background:"rgba(245,168,0,0.3)", marginBottom:24 }}/>
+              <div style={{ width:32, height:1, background:"rgba(245,168,0,0.3)", marginBottom:26 }}/>
               <p style={{
-                fontFamily:"Rajdhani,sans-serif", fontSize:11, letterSpacing:1,
-                color:"rgba(255,255,255,0.25)", lineHeight:1.8,
+                fontFamily:"Rajdhani,sans-serif", fontSize:15, letterSpacing:1,
+                color:"rgba(224, 213, 213, 0.97)", lineHeight:1.8,
               }}>
                 Services typically begin at 9:00am WAT. Recordings are published
                 to the archive below within a few hours of close.
@@ -538,7 +485,7 @@ export default function StreamsPage() {
         </section>
 
         {/* ══════════════════════════════════════
-            3. PAST STREAMS — editorial list
+            3. PAST STREAMS
         ══════════════════════════════════════ */}
         <section style={{
           padding:`${secPad}px ${sidePad}px`,
@@ -553,11 +500,11 @@ export default function StreamsPage() {
               <div className="sp-eyebrow"><span className="sp-eyebrow-line"/>Archive</div>
               <h2 style={{
                 fontFamily:"Cinzel,serif", fontWeight:700,
-                fontSize:isMobile ? 26 : 42, color:"#fff", margin:0,
+                fontSize:isMobile ? 30 : 46, color:"#fff", margin:0,
               }}>Past Streams</h2>
             </div>
 
-            <div style={{ display:"flex", gap:isMobile ? 16 : 26, flexWrap:"wrap", overflowX:"auto" }}>
+            <div style={{ display:"flex", gap:isMobile ? 18 : 28, flexWrap:"wrap", overflowX:"auto" }}>
               {filters.map(f => (
                 <button key={f} className={`sp-filter ${activeFilter===f ? "active" : ""}`} onClick={() => setActiveFilter(f)}>
                   {f}
@@ -571,9 +518,9 @@ export default function StreamsPage() {
             {filtered.map((s, i) => (
               <div key={i} className="sp-row" style={{
                 gridTemplateColumns: isMobile ? "1fr" : "280px 1fr auto",
-                gap: isMobile ? 16 : 36,
+                gap: isMobile ? 18 : 36,
                 alignItems:"center",
-                padding: isMobile ? "20px 0" : "28px 0",
+                padding: isMobile ? "22px 0" : "32px 0",
               }}>
                 <div className="sp-row-thumb" style={{ paddingTop: isMobile ? "56.25%" : 0, aspectRatio: isMobile ? "auto" : "16/9" }}>
                   <iframe
@@ -586,36 +533,36 @@ export default function StreamsPage() {
 
                 <div>
                   <div style={{
-                    fontSize:10, letterSpacing:2.5, textTransform:"uppercase", fontWeight:700,
-                    color:"#F5A800", marginBottom:8,
+                    fontSize:13, letterSpacing:2.5, textTransform:"uppercase", fontWeight:700,
+                    color:"#F5A800", marginBottom:10,
                   }}>{s.tag} · {s.date}</div>
                   <div style={{
-                    fontFamily:"Cinzel,serif", fontSize:isMobile ? 16 : 19,
-                    fontWeight:700, color:"#fff", marginBottom:6, lineHeight:1.3,
+                    fontFamily:"Cinzel,serif", fontSize:isMobile ? 18 : 22,
+                    fontWeight:700, color:"#fff", marginBottom:8, lineHeight:1.3,
                   }}>{s.title}</div>
                   <div style={{
-                    fontFamily:"Cormorant Garamond,serif", fontSize:14, fontStyle:"italic",
-                    color:"rgba(255,255,255,0.4)",
+                    fontFamily:"Cormorant Garamond,serif", fontSize:17, fontStyle:"italic",
+                    color:"rgba(255,255,255,0.45)",
                   }}>{s.speaker}</div>
                 </div>
 
                 <a href={`https://www.youtube.com/watch?v=${s.youtubeId}`} target="_blank" rel="noopener noreferrer"
                   className="sp-row-watch" style={{ justifySelf: isMobile ? "start" : "end" }}>
-                  <PlayGlyph size={14}/> Watch
+                  <PlayGlyph size={17}/> Watch
                 </a>
               </div>
             ))}
           </div>
 
-          <div style={{ textAlign:"center", marginTop:56 }}>
-            <a href={YOUTUBE_CHANNEL_URL} target="_blank" rel="noopener noreferrer" className="sp-connect-link" style={{ fontSize:12, letterSpacing:3 }}>
+          <div style={{ textAlign:"center", marginTop:60 }}>
+            <a href={YOUTUBE_CHANNEL_URL} target="_blank" rel="noopener noreferrer" className="sp-connect-link" style={{ fontSize:15, letterSpacing:3 }}>
               View Full Archive on YouTube →
             </a>
           </div>
         </section>
 
         {/* ══════════════════════════════════════
-            4. GET NOTIFIED — quiet close
+            4. GET NOTIFIED
         ══════════════════════════════════════ */}
         <section style={{
           padding:`${secPad}px ${sidePad}px`,
@@ -629,19 +576,19 @@ export default function StreamsPage() {
             pointerEvents:"none",
           }}/>
 
-          <div style={{ position:"relative", zIndex:1, maxWidth:680 }}>
+          <div style={{ position:"relative", zIndex:1, maxWidth:700 }}>
             <div className="sp-eyebrow"><span className="sp-eyebrow-line"/>Stay Connected</div>
             <h2 style={{
               fontFamily:"Cinzel,serif", fontWeight:700,
-              fontSize:isMobile ? 28 : 44, color:"#fff",
-              marginBottom:18, lineHeight:1.15,
+              fontSize:isMobile ? 30 : 48, color:"#fff",
+              marginBottom:20, lineHeight:1.15,
             }}>
               Get notified<br/>before we go live.
             </h2>
             <p style={{
-              fontFamily:"Cormorant Garamond,serif", fontSize:isMobile ? 16 : 18,
+              fontFamily:"Cormorant Garamond,serif", fontSize:isMobile ? 18 : 21,
               fontStyle:"italic", color:"rgba(255,255,255,0.45)",
-              maxWidth:480, marginBottom:8, lineHeight:1.8,
+              maxWidth:500, marginBottom:10, lineHeight:1.8,
             }}>
               Every service, announced where you already are.
             </p>
@@ -649,20 +596,20 @@ export default function StreamsPage() {
             <div>
               <a href={WHATSAPP_GROUP_LINK} target="_blank" rel="noopener noreferrer" className="sp-cta-link">
                 WhatsApp Group
-                <span className="sp-cta-arrow"><WAIcon w={16} h={16}/></span>
+                <span className="sp-cta-arrow"><WAIcon w={20} h={20}/></span>
               </a>
               <a href={`https://www.youtube.com/channel/${YOUTUBE_CHANNEL_ID}?sub_confirmation=1`}
                 target="_blank" rel="noopener noreferrer" className="sp-cta-link">
                 Subscribe on YouTube
-                <span className="sp-cta-arrow"><YTIcon w={17} h={13}/></span>
+                <span className="sp-cta-arrow"><YTIcon w={20} h={16}/></span>
               </a>
               <a href={FACEBOOK_PAGE_URL} target="_blank" rel="noopener noreferrer" className="sp-cta-link">
                 Follow on Facebook
-                <span className="sp-cta-arrow"><FBIcon w={15} h={15}/></span>
+                <span className="sp-cta-arrow"><FBIcon w={18} h={18}/></span>
               </a>
               <a href={TELEGRAM_LINK} target="_blank" rel="noopener noreferrer" className="sp-cta-link">
                 Telegram Channel
-                <span className="sp-cta-arrow"><TGIcon w={16} h={16}/></span>
+                <span className="sp-cta-arrow"><TGIcon w={20} h={20}/></span>
               </a>
             </div>
           </div>

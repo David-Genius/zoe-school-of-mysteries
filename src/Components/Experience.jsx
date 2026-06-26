@@ -22,12 +22,12 @@ const experiences = [
       </svg>
     ),
     title: "Sermons",
-    desc: "Immerse yourself in revelatory teachings that unveil the mysteries of Christ, awaken the Zoe life within, and equip believers to walk in wisdom, power, purpose, and spiritual maturity.",
+    desc: "Receive living words that unveil the mysteries of the Kingdom, reveal Christ within, awaken divine consciousness, and equip saints to walk in wisdom, dominion, power, and sonship.",
     // cta: "View messages",
     // href: "#sermon",
     accent: "#9333EA",
     gradient: "linear-gradient(135deg, #6B21A8, #9333EA)",
-    label: "In-Person · Online",
+    label: "REVELATION · IMPARTATION",
   },
   {
     icon: (
@@ -38,12 +38,12 @@ const experiences = [
       </svg>
     ),
     title: "Live Streams",
-    desc: "Join a global community of seekers and believers as we gather online for revelation, impartation, prophetic insight, and encounters that transcend geographical boundaries.",
+    desc: "Connect from anywhere in the world and participate in moments of revelation, prophetic insight, impartation, and divine encounters that transcend geographical boundaries.",
     // cta: "Join the stream",
     // href: "#streams",
     accent: "#F5A800",
     gradient: "linear-gradient(135deg, #C88600, #F5A800)",
-    label: "Every Sunday · Live",
+    label: "GLOBAL · LIVE GATHERINGS",
   },
   {
     icon: (
@@ -53,12 +53,12 @@ const experiences = [
       </svg>
     ),
     title: "Stores",
-    desc: "Explore a rich collection of books, courses, study resources, and spiritual tools carefully crafted to deepen your understanding of the Kingdom and accelerate your journey into divine realities.",
+    desc: "Access books, teachings, courses, and Kingdom resources designed to deepen spiritual understanding, strengthen your walk with God, and accelerate your growth into maturity and purpose.",
     // cta: "Shop now",
     // href: "#store",
     accent: "#7C3AED",
     gradient: "linear-gradient(135deg, #5B21B6, #7C3AED)",
-    label: "Resources · Merch",
+    label: "BOOKS · RESOURCES",
   },
   {
     icon: (
@@ -69,12 +69,12 @@ const experiences = [
       </svg>
     ),
     title: "Events",
-    desc: "Step into transformative gatherings, conferences, retreats, and masterclasses where believers are equipped, activated, and immersed in deeper dimensions of God's presence, wisdom, and purpose.",
+    desc: "Join strategic Kingdom gatherings where saints are equipped, activated, transformed, and positioned to manifest God's purposes in their generation through revelation, impartation, and encounter.Step into transformative gatherings, conferences, retreats, and masterclasses where believers are equipped, activated, and immersed in deeper dimensions of God's presence, wisdom, and purpose.",
     // cta: "See upcoming events",
     // href: "#events",
     accent: "#D97706",
     gradient: "linear-gradient(135deg, #B45309, #D97706)",
-    label: "Conferences · Citywide",
+    label: "CONFERENCES · GATHERINGS",
   },
 ];
 
@@ -141,7 +141,7 @@ export default function Experience() {
 
         .exp-label {
           font-family: 'Rajdhani', sans-serif;
-          font-size: 10px; letter-spacing: 3.5px;
+          font-size: 14px; letter-spacing: 3.5px;
           text-transform: uppercase;
           color: rgba(255,255,255,0.45);
           margin-bottom: 10px;
@@ -219,6 +219,24 @@ export default function Experience() {
           background: #F5A800;
           transform: scale(1.6);
         }
+          @media (max-width: 640px) {
+  .exp-label {
+    font-size: 14px !important;
+  }
+
+  .exp-title {
+    font-size: 22px !important;
+  }
+
+  .exp-desc {
+    font-size: 18px !important;
+    line-height: 1.8 !important;
+  }
+
+  .exp-cta {
+    font-size: 15px !important;
+  }
+}
       `}</style>
 
       <section className="exp-section" id="experience" style={{
@@ -243,7 +261,7 @@ export default function Experience() {
             display: "inline-flex", alignItems: "center", gap: 16,
             marginBottom: 20,
             fontFamily: "Rajdhani, sans-serif",
-            fontSize: 10, letterSpacing: 5.5,
+            fontSize: isMobile ? 18 : 18, letterSpacing: 5.5,
             textTransform: "uppercase", color: "#F5A800",
             fontWeight: 600,
           }}>
@@ -252,7 +270,7 @@ export default function Experience() {
               background: "linear-gradient(90deg, transparent, #F5A800)",
               display: "inline-block",
             }} />
-            How We Gather
+            Streams of Encounter
             <span style={{
               width: 32, height: 1,
               background: "linear-gradient(90deg, #F5A800, transparent)",
@@ -262,29 +280,28 @@ export default function Experience() {
 
           <h2 style={{
             fontFamily: "Cinzel, serif",
-            fontSize: isMobile ? 24 : isTablet ? 34 : 50,
+            fontSize: isMobile ? 32 : isTablet ? 42 : 50,
             fontWeight: 700, color: "#fff",
             marginBottom: 18, lineHeight: 1.15,
             letterSpacing: "-0.01em",
           }}>
-            Find the right experience{" "}
+            Discover Your Next {" "}
             <span style={{
               background: "linear-gradient(90deg, #F5A800 0%, #FFD166 60%, #F5A800 100%)",
               backgroundSize: "200% auto",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
-            }}>for you.</span>
+            }}>Kingdom Encounter.</span>
           </h2>
 
           <p style={{
             fontFamily: "Cormorant Garamond, serif",
-            fontSize: isMobile ? 16 : 19,
+            fontSize: isMobile ? 20 : 22,
             fontWeight: 300, fontStyle: "italic",
             color: "rgba(255,255,255,0.65)",
             maxWidth: 520, margin: "0 auto", lineHeight: 1.85,
           }}>
-            No matter where you are — in a city, a living room, or a stream —
-            there is a place for you in what God is building.
+            Whether through revelation, impartation, fellowship, or Kingdom resources, every pathway is designed to bring believers into greater dimensions of Christ, purpose, and sonship."
           </p>
 
           <div style={{
@@ -332,9 +349,12 @@ export default function Experience() {
               <div className="exp-card-inner">
                 <div className="exp-icon-wrap">{exp.icon}</div>
                 <div className="exp-label">{exp.label}</div>
-                <h3 className="exp-title" style={{ fontSize: isMobile ? 16 : 18 }}>{exp.title}</h3>
+                <h3 className="exp-title" style={{ fontSize: isMobile ? 22 : 24 }}>{exp.title}</h3>
                 <div className="exp-divider" />
-                <p className="exp-desc" style={{ fontSize: isMobile ? 14 : 15.5 }}>{exp.desc}</p>
+                <p
+  className="exp-desc"
+  style={{ fontSize: isMobile ? 18 : 18 }}
+>{exp.desc}</p>
                 <a href={exp.href} className="exp-cta">
                   {exp.cta}
                   {/* <span className="exp-cta-arrow">
@@ -369,7 +389,7 @@ export default function Experience() {
           </p>
           <a href="https://chat.whatsapp.com/FKZqlGXZwXv39iFFqfa9N4" style={{
             fontFamily: "Rajdhani, sans-serif",
-            fontSize: 11, letterSpacing: 3,
+            fontSize: 15, letterSpacing: 3,
             textTransform: "uppercase",
             color: "#0A0A0A",
             textDecoration: "none",
@@ -397,7 +417,7 @@ export default function Experience() {
               e.currentTarget.style.boxShadow = "0 4px 20px rgba(245,168,0,0.25)";
             }}
           >
-            Get in touch
+            CONNECT WITH US
             <svg width="10" height="10" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
               <path d="M5 12h14M12 5l7 7-7 7"/>
             </svg>

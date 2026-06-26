@@ -34,7 +34,7 @@ function AvatarRing({ name, size = 100 }) {
       }}>
         <span style={{
           fontFamily: "Cinzel, serif", fontWeight: 900,
-          fontSize: size * 0.28,
+          fontSize: size * 0.32,
           background: "linear-gradient(135deg, #C88600, #F5A800, #FFD166)",
           WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent",
         }}>{initials}</span>
@@ -46,13 +46,14 @@ function AvatarRing({ name, size = 100 }) {
 // ─── Editable field ───
 function EditField({ label, value, type = "text", editing, onChange, placeholder }) {
   return (
-    <div style={{ marginBottom: 20 }}>
+    <div style={{ marginBottom: 24 }}>
       <div style={{
         fontFamily: "Rajdhani, sans-serif",
-        fontSize: 10, letterSpacing: 4,
+        fontSize: 13, letterSpacing: 4,
         textTransform: "uppercase",
-        color: "rgba(255,255,255,0.3)",
-        marginBottom: 8,
+        color: "rgba(255,255,255,0.4)",
+        marginBottom: 10,
+        fontWeight: 600,
       }}>{label}</div>
       {editing ? (
         <input
@@ -64,10 +65,10 @@ function EditField({ label, value, type = "text", editing, onChange, placeholder
             width: "100%",
             background: "rgba(245,168,0,0.04)",
             border: "1px solid rgba(245,168,0,0.35)",
-            borderRadius: 4, padding: "14px 16px",
+            borderRadius: 4, padding: "16px 18px",
             color: "#fff",
             fontFamily: "Rajdhani, sans-serif",
-            fontSize: 15, letterSpacing: 0.5,
+            fontSize: 18, letterSpacing: 0.5,
             outline: "none",
             boxShadow: "0 0 20px rgba(245,168,0,0.1)",
             boxSizing: "border-box",
@@ -85,15 +86,15 @@ function EditField({ label, value, type = "text", editing, onChange, placeholder
       ) : (
         <div style={{
           fontFamily: "Cormorant Garamond, serif",
-          fontSize: 18, fontWeight: 400,
+          fontSize: 22, fontWeight: 400,
           color: value ? "#fff" : "rgba(255,255,255,0.2)",
-          padding: "12px 0",
+          padding: "14px 0",
           borderBottom: "1px solid rgba(255,255,255,0.06)",
           letterSpacing: 0.3,
-          minHeight: 46,
+          minHeight: 54,
           display: "flex", alignItems: "center",
         }}>
-          {value || <span style={{ fontStyle: "italic", fontSize: 14, color: "rgba(255,255,255,0.2)" }}>Not set</span>}
+          {value || <span style={{ fontStyle: "italic", fontSize: 17, color: "rgba(255,255,255,0.2)" }}>Not set</span>}
         </div>
       )}
     </div>
@@ -163,7 +164,7 @@ export default function ProfilePage({ onLogout }) {
 
   if (!user) return (
     <div style={{ background: "#000", minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center" }}>
-      <div style={{ color: "rgba(255,255,255,0.4)", fontFamily: "Cormorant Garamond, serif", fontSize: 20, fontStyle: "italic" }}>
+      <div style={{ color: "rgba(255,255,255,0.4)", fontFamily: "Cormorant Garamond, serif", fontSize: 22, fontStyle: "italic" }}>
         Not signed in
       </div>
     </div>
@@ -217,9 +218,9 @@ export default function ProfilePage({ onLogout }) {
           color: #000;
           border: none; border-radius: 4px;
           font-family: 'Cinzel', serif;
-          font-size: 12px; letter-spacing: 3px;
+          font-size: 14px; letter-spacing: 3px;
           text-transform: uppercase; font-weight: 900;
-          padding: 14px 32px;
+          padding: 16px 36px;
           cursor: pointer;
           transition: all 0.4s;
           position: relative; overflow: hidden;
@@ -236,11 +237,11 @@ export default function ProfilePage({ onLogout }) {
           background: transparent;
           border: 1px solid rgba(255,255,255,0.1);
           border-radius: 4px;
-          color: rgba(255,255,255,0.4);
+          color: rgba(255,255,255,0.5);
           font-family: 'Rajdhani', sans-serif;
-          font-size: 11px; letter-spacing: 2px;
+          font-size: 13px; letter-spacing: 2px;
           text-transform: uppercase; font-weight: 700;
-          padding: 14px 28px;
+          padding: 16px 30px;
           cursor: pointer;
           transition: all 0.3s;
         }
@@ -250,11 +251,11 @@ export default function ProfilePage({ onLogout }) {
           background: transparent;
           border: 1px solid rgba(239,68,68,0.25);
           border-radius: 4px;
-          color: rgba(239,68,68,0.6);
+          color: rgba(239,68,68,0.7);
           font-family: 'Rajdhani', sans-serif;
-          font-size: 11px; letter-spacing: 2px;
+          font-size: 13px; letter-spacing: 2px;
           text-transform: uppercase; font-weight: 700;
-          padding: 14px 28px;
+          padding: 16px 30px;
           cursor: pointer;
           transition: all 0.3s;
           display: flex; align-items: center; gap: 8px;
@@ -268,10 +269,10 @@ export default function ProfilePage({ onLogout }) {
 
         .pp-badge {
           display: inline-flex; align-items: center; gap: 6px;
-          padding: 5px 14px;
+          padding: 6px 16px;
           border-radius: 100px;
           font-family: 'Rajdhani', sans-serif;
-          font-size: 9px; letter-spacing: 3px;
+          font-size: 12px; letter-spacing: 3px;
           text-transform: uppercase; font-weight: 700;
         }
 
@@ -280,9 +281,9 @@ export default function ProfilePage({ onLogout }) {
           background: rgba(10,8,0,0.97);
           border: 1px solid rgba(34,197,94,0.4);
           border-radius: 4px;
-          padding: 14px 28px;
-          display: flex; align-items: center; gap: 10px;
-          font-family: 'Rajdhani', sans-serif; font-size: 13px;
+          padding: 16px 32px;
+          display: flex; align-items: center; gap: 12px;
+          font-family: 'Rajdhani', sans-serif; font-size: 16px;
           letter-spacing: 1px; color: #22c55e;
           box-shadow: 0 8px 40px rgba(0,0,0,0.8), 0 0 30px rgba(34,197,94,0.1);
           animation: pp-fadeUp 0.4s ease;
@@ -298,8 +299,9 @@ export default function ProfilePage({ onLogout }) {
         .pp-eyebrow {
           display: flex; align-items: center; gap: 10px;
           font-family: 'Rajdhani', sans-serif;
-          font-size: 10px; letter-spacing: 5px;
+          font-size: 13px; letter-spacing: 5px;
           text-transform: uppercase; color: #F5A800;
+          font-weight: 600;
           margin-bottom: 10px;
         }
 
@@ -318,6 +320,7 @@ export default function ProfilePage({ onLogout }) {
         minHeight: "100vh",
         padding: "100px 20px 60px",
         fontFamily: "Rajdhani, sans-serif",
+        fontSize: 16,
       }}>
 
         {/* Background texture */}
@@ -332,13 +335,13 @@ export default function ProfilePage({ onLogout }) {
         }} />
 
         <div style={{
-          maxWidth: 560, margin: "0 auto",
+          maxWidth: 580, margin: "0 auto",
           position: "relative", zIndex: 1,
           animation: "pp-fadeUp 0.6s ease both",
         }}>
 
           {/* ─── PAGE HEADER ─── */}
-          <div style={{ textAlign: "center", marginBottom: 48 }}>
+          <div style={{ textAlign: "center", marginBottom: 52 }}>
             <div className="pp-eyebrow" style={{ justifyContent: "center" }}>
               <span style={{ display: "inline-block", width: 24, height: 1, background: "#F5A800" }} />
               My Account
@@ -346,15 +349,15 @@ export default function ProfilePage({ onLogout }) {
             </div>
             <h1 style={{
               fontFamily: "Cinzel, serif", fontWeight: 900,
-              fontSize: 38, letterSpacing: "-1px",
-              margin: "0 0 4px",
+              fontSize: 46, letterSpacing: "-1px",
+              margin: "0 0 6px",
             }}>
               <span className="pp-gold">Profile</span>
             </h1>
             <p style={{
               fontFamily: "Cormorant Garamond, serif",
-              fontSize: 16, fontStyle: "italic", fontWeight: 300,
-              color: "rgba(255,255,255,0.35)",
+              fontSize: 20, fontStyle: "italic", fontWeight: 300,
+              color: "rgba(255,255,255,0.4)",
             }}>
               Your identity in the Kingdom
             </p>
@@ -362,23 +365,23 @@ export default function ProfilePage({ onLogout }) {
 
           {/* ─── AVATAR + ROLE CARD ─── */}
           <div className="pp-card" style={{
-            padding: "36px 32px 28px",
+            padding: "40px 36px 32px",
             marginBottom: 16,
             textAlign: "center",
             animation: "pp-fadeUp 0.6s ease 0.1s both",
           }}>
-            <AvatarRing name={user.name || user.displayName} size={96} />
+            <AvatarRing name={user.name || user.displayName} size={108} />
 
             <div style={{
               fontFamily: "Cinzel, serif", fontWeight: 700,
-              fontSize: 22, color: "#fff",
-              marginTop: 20, marginBottom: 6,
+              fontSize: 26, color: "#fff",
+              marginTop: 22, marginBottom: 8,
               letterSpacing: 0.5,
             }}>
               {user.name || user.displayName || "Member"}
             </div>
 
-            <div style={{ marginBottom: 16 }}>
+            <div style={{ marginBottom: 18 }}>
               <span className="pp-badge" style={{
                 background: "rgba(245,168,0,0.08)",
                 border: "1px solid rgba(245,168,0,0.2)",
@@ -391,9 +394,10 @@ export default function ProfilePage({ onLogout }) {
             {joinDate && (
               <div style={{
                 fontFamily: "Rajdhani, sans-serif",
-                fontSize: 10, letterSpacing: 2,
-                color: "rgba(255,255,255,0.2)",
+                fontSize: 13, letterSpacing: 2,
+                color: "rgba(255,255,255,0.3)",
                 textTransform: "uppercase",
+                fontWeight: 600,
               }}>
                 Kingdom Family since {joinDate}
               </div>
@@ -402,14 +406,14 @@ export default function ProfilePage({ onLogout }) {
 
           {/* ─── EDIT FORM CARD ─── */}
           <div className="pp-card" style={{
-            padding: "32px",
+            padding: "36px",
             marginBottom: 16,
             animation: "pp-fadeUp 0.6s ease 0.2s both",
           }}>
 
             <div style={{
               display: "flex", justifyContent: "space-between",
-              alignItems: "center", marginBottom: 28,
+              alignItems: "center", marginBottom: 32,
             }}>
               <div>
                 <div className="pp-eyebrow" style={{ marginBottom: 2 }}>
@@ -424,19 +428,19 @@ export default function ProfilePage({ onLogout }) {
                     background: "transparent",
                     border: "1px solid rgba(245,168,0,0.25)",
                     borderRadius: 3,
-                    padding: "8px 18px",
+                    padding: "10px 20px",
                     cursor: "pointer",
                     fontFamily: "Rajdhani, sans-serif",
-                    fontSize: 10, letterSpacing: 3,
+                    fontSize: 12, letterSpacing: 3,
                     textTransform: "uppercase", fontWeight: 700,
                     color: "#F5A800",
                     transition: "all 0.3s",
-                    display: "flex", alignItems: "center", gap: 6,
+                    display: "flex", alignItems: "center", gap: 8,
                   }}
                   onMouseEnter={e => e.currentTarget.style.background = "rgba(245,168,0,0.08)"}
                   onMouseLeave={e => e.currentTarget.style.background = "transparent"}
                 >
-                  <svg width="11" height="11" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                  <svg width="13" height="13" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
                     <path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/>
                     <path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/>
                   </svg>
@@ -464,7 +468,7 @@ export default function ProfilePage({ onLogout }) {
             {/* Action buttons */}
             {editing && (
               <div style={{
-                display: "flex", gap: 12, marginTop: 28,
+                display: "flex", gap: 12, marginTop: 32,
                 flexWrap: "wrap",
               }}>
                 <button
@@ -476,7 +480,7 @@ export default function ProfilePage({ onLogout }) {
                   {saving ? (
                     <>
                       <div style={{
-                        width: 14, height: 14, borderRadius: "50%",
+                        width: 16, height: 16, borderRadius: "50%",
                         border: "2px solid rgba(0,0,0,0.3)",
                         borderTopColor: "#000",
                         animation: "pp-spin 0.8s linear infinite",
@@ -494,7 +498,7 @@ export default function ProfilePage({ onLogout }) {
 
           {/* ─── SIGN OUT CARD ─── */}
           <div className="pp-card" style={{
-            padding: "24px 32px",
+            padding: "28px 36px",
             animation: "pp-fadeUp 0.6s ease 0.3s both",
           }}>
             <div style={{
@@ -503,14 +507,14 @@ export default function ProfilePage({ onLogout }) {
             }}>
               <div>
                 <div style={{
-                  fontFamily: "Cinzel, serif", fontSize: 14,
-                  fontWeight: 700, color: "rgba(255,255,255,0.6)",
-                  marginBottom: 4,
+                  fontFamily: "Cinzel, serif", fontSize: 17,
+                  fontWeight: 700, color: "rgba(255,255,255,0.7)",
+                  marginBottom: 6,
                 }}>Sign Out</div>
                 <div style={{
                   fontFamily: "Cormorant Garamond, serif",
-                  fontSize: 14, fontStyle: "italic",
-                  color: "rgba(255,255,255,0.25)",
+                  fontSize: 17, fontStyle: "italic",
+                  color: "rgba(255,255,255,0.3)",
                 }}>
                   You'll need to sign in again to access your account
                 </div>
@@ -519,7 +523,7 @@ export default function ProfilePage({ onLogout }) {
                 className="pp-btn-danger"
                 onClick={() => setLogoutConfirm(true)}
               >
-                <svg width="13" height="13" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                <svg width="15" height="15" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
                   <path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/>
                   <polyline points="16 17 21 12 16 7"/>
                   <line x1="21" y1="12" x2="9" y2="12"/>
@@ -535,7 +539,7 @@ export default function ProfilePage({ onLogout }) {
       {/* ─── SAVED TOAST ─── */}
       {saved && (
         <div className="pp-toast">
-          <span style={{ fontSize: 16 }}>✓</span>
+          <span style={{ fontSize: 18 }}>✓</span>
           Profile updated successfully
         </div>
       )}
@@ -546,20 +550,20 @@ export default function ProfilePage({ onLogout }) {
           <div
             className="pp-card"
             style={{
-              maxWidth: 380, width: "90%",
-              padding: "40px 36px",
+              maxWidth: 400, width: "90%",
+              padding: "44px 40px",
               textAlign: "center",
             }}
             onClick={e => e.stopPropagation()}
           >
             <div style={{
-              width: 56, height: 56, borderRadius: "50%",
+              width: 60, height: 60, borderRadius: "50%",
               background: "rgba(239,68,68,0.08)",
               border: "1px solid rgba(239,68,68,0.25)",
               display: "flex", alignItems: "center", justifyContent: "center",
-              margin: "0 auto 24px", fontSize: 22,
+              margin: "0 auto 28px", fontSize: 24,
             }}>
-              <svg width="22" height="22" fill="none" stroke="#ef4444" strokeWidth="2" viewBox="0 0 24 24">
+              <svg width="24" height="24" fill="none" stroke="#ef4444" strokeWidth="2" viewBox="0 0 24 24">
                 <path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/>
                 <polyline points="16 17 21 12 16 7"/>
                 <line x1="21" y1="12" x2="9" y2="12"/>
@@ -567,14 +571,14 @@ export default function ProfilePage({ onLogout }) {
             </div>
 
             <div style={{
-              fontFamily: "Cinzel, serif", fontSize: 20,
-              fontWeight: 700, color: "#fff", marginBottom: 10,
+              fontFamily: "Cinzel, serif", fontSize: 22,
+              fontWeight: 700, color: "#fff", marginBottom: 12,
             }}>Sign out?</div>
             <p style={{
               fontFamily: "Cormorant Garamond, serif",
-              fontSize: 16, fontStyle: "italic",
-              color: "rgba(255,255,255,0.4)",
-              lineHeight: 1.7, marginBottom: 32,
+              fontSize: 18, fontStyle: "italic",
+              color: "rgba(255,255,255,0.45)",
+              lineHeight: 1.7, marginBottom: 36,
             }}>
               You'll be signed out of your Zoe account.
             </p>

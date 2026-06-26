@@ -49,7 +49,7 @@ const socials = [
     label: "Facebook",
     href: "https://www.facebook.com/share/1BPBCLT1vq/",
     icon: (
-      <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24">
+      <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
         <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/>
       </svg>
     ),
@@ -58,7 +58,7 @@ const socials = [
     label: "Instagram",
     href: "https://www.instagram.com/invites/contact/?utm_source=ig_contact_invite&utm_medium=copy_link&utm_content=2ydy17f",
     icon: (
-      <svg width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+      <svg width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
         <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
         <circle cx="12" cy="12" r="4"/>
         <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>
@@ -69,7 +69,7 @@ const socials = [
     label: "Telegram",
     href: "https://t.me/+KtrkQ-ACzkNlNTFk",
     icon: (
-      <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24">
+      <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
         <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
       </svg>
     ),
@@ -78,7 +78,7 @@ const socials = [
     label: "YouTube",
     href: "https://www.youtube.com/@melchizedekololadehassan1591",
     icon: (
-      <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24">
+      <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
         <path d="M22.54 6.42a2.78 2.78 0 00-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 00-1.95 1.96A29 29 0 001 12a29 29 0 00.46 5.58A2.78 2.78 0 003.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 001.95-1.95A29 29 0 0023 12a29 29 0 00-.46-5.58zM9.75 15.02V8.98L15.5 12l-5.75 3.02z"/>
       </svg>
     ),
@@ -87,7 +87,7 @@ const socials = [
     label: "TikTok",
     href: "https://www.tiktok.com/@apostlehassan.o?_r=1&_t=ZS-977BxSwHJeq",
     icon: (
-      <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24">
+      <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
         <path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.52V6.76a4.85 4.85 0 01-1.01-.07z"/>
       </svg>
     ),
@@ -105,7 +105,6 @@ export default function Footer({ logo, onNavigate }) {
   const goToPage = (page) => {
     if (!page) return;
     onNavigate?.(page);
-    // Scroll to top after navigation
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
@@ -114,13 +113,14 @@ export default function Footer({ logo, onNavigate }) {
       <style>{`
         .footer-link {
           font-family: 'Rajdhani', sans-serif;
-          font-size: 14px; font-weight: 500;
+          font-size: 16px;
+          font-weight: 500;
           color: rgba(255,255,255,0.45);
           text-decoration: none;
           display: block;
-          padding: 5px 0;
+          padding: 6px 0;
           transition: color 0.2s;
-          letter-spacing: 0.5px;
+          letter-spacing: 0.4px;
           cursor: pointer;
           background: none;
           border: none;
@@ -129,7 +129,7 @@ export default function Footer({ logo, onNavigate }) {
         .footer-link:hover { color: #F5A800; }
 
         .social-btn {
-          width: 40px; height: 40px; border-radius: 50%;
+          width: 44px; height: 44px; border-radius: 50%;
           border: 1px solid rgba(255,255,255,0.15);
           background: transparent;
           display: flex; align-items: center; justify-content: center;
@@ -146,7 +146,8 @@ export default function Footer({ logo, onNavigate }) {
 
         .footer-bottom-link {
           font-family: 'Rajdhani', sans-serif;
-          font-size: 12px; letter-spacing: 1px;
+          font-size: 14px;
+          letter-spacing: 0.8px;
           color: rgba(255,255,255,0.3);
           text-decoration: none;
           transition: color 0.2s;
@@ -158,8 +159,9 @@ export default function Footer({ logo, onNavigate }) {
 
         .footer-col-heading {
           font-family: 'Cinzel', serif;
-          font-size: 12px; font-weight: 700;
-          letter-spacing: 3px;
+          font-size: 13px;
+          font-weight: 700;
+          letter-spacing: 2.5px;
           text-transform: uppercase;
           color: #F5A800;
           margin-bottom: 22px;
@@ -185,8 +187,9 @@ export default function Footer({ logo, onNavigate }) {
           padding: 18px 0;
           cursor: pointer;
           font-family: 'Cinzel', serif;
-          font-size: 12px; font-weight: 700;
-          letter-spacing: 3px;
+          font-size: 14px;
+          font-weight: 700;
+          letter-spacing: 2.5px;
           text-transform: uppercase;
           color: #F5A800;
         }
@@ -258,7 +261,7 @@ export default function Footer({ logo, onNavigate }) {
               <div
                 onClick={() => goToPage("home")}
                 style={{
-                  fontFamily: "Cinzel, serif", fontSize: 22, fontWeight: 900,
+                  fontFamily: "Cinzel, serif", fontSize: 24, fontWeight: 900,
                   color: "#F5A800", marginBottom: 22, letterSpacing: 2, cursor: "pointer",
                 }}>
                 ZOE SCHOOL
@@ -267,7 +270,7 @@ export default function Footer({ logo, onNavigate }) {
 
             <p style={{
               fontFamily: "Cormorant Garamond, serif",
-              fontSize: 17, fontWeight: 300, fontStyle: "italic",
+              fontSize: 19, fontWeight: 300, fontStyle: "italic",
               color: "rgba(255,255,255,0.42)",
               lineHeight: 1.85, marginBottom: 32,
               maxWidth: isMobile ? 320 : 340,
@@ -285,31 +288,31 @@ export default function Footer({ logo, onNavigate }) {
             }}>
               <div style={{ textAlign: isMobile ? "center" : "left" }}>
                 <div style={{
-                  fontFamily: "Cinzel, serif", fontSize: 10, fontWeight: 700,
+                  fontFamily: "Cinzel, serif", fontSize: 12, fontWeight: 700,
                   letterSpacing: 2, textTransform: "uppercase",
                   color: "rgba(255,255,255,0.28)", marginBottom: 8,
                 }}>Location</div>
                 <div style={{
-                  fontFamily: "Rajdhani, sans-serif", fontSize: 14,
-                  color: "rgba(255,255,255,0.5)", lineHeight: 1.6, letterSpacing: 0.5,
+                  fontFamily: "Rajdhani, sans-serif", fontSize: 16,
+                  color: "rgba(255,255,255,0.5)", lineHeight: 1.6, letterSpacing: 0.4,
                 }}>Lagos, Nigeria</div>
               </div>
               <div style={{ textAlign: isMobile ? "center" : "left" }}>
                 <div style={{
-                  fontFamily: "Cinzel, serif", fontSize: 10, fontWeight: 700,
+                  fontFamily: "Cinzel, serif", fontSize: 12, fontWeight: 700,
                   letterSpacing: 2, textTransform: "uppercase",
                   color: "rgba(255,255,255,0.28)", marginBottom: 8,
                 }}>Phone</div>
                 <div style={{
-                  fontFamily: "Rajdhani, sans-serif", fontSize: 14,
-                  color: "rgba(255,255,255,0.5)", letterSpacing: 0.5, lineHeight: 1.6,
+                  fontFamily: "Rajdhani, sans-serif", fontSize: 16,
+                  color: "rgba(255,255,255,0.5)", letterSpacing: 0.4, lineHeight: 1.6,
                 }}>
                   +234 703 610 0912<br />+234 817 929 7984
                 </div>
               </div>
             </div>
 
-            {/* Socials — always open in new tab */}
+            {/* Socials */}
             <div style={{
               display: "flex", gap: 12, flexWrap: "wrap",
               justifyContent: isMobile ? "center" : "flex-start",
@@ -347,7 +350,7 @@ export default function Footer({ logo, onNavigate }) {
                     </button>
                     <div
                       className="footer-accordion-body"
-                      style={{ maxHeight: open ? col.links.length * 44 + 8 : 0 }}
+                      style={{ maxHeight: open ? col.links.length * 48 + 8 : 0 }}
                     >
                       <div style={{ paddingBottom: 12, textAlign: "center" }}>
                         {col.links.map((link, j) => (
@@ -410,7 +413,7 @@ export default function Footer({ logo, onNavigate }) {
 
           <div style={{
             fontFamily: "Rajdhani, sans-serif",
-            fontSize: 12, letterSpacing: 1,
+            fontSize: 14, letterSpacing: 0.8,
             color: "rgba(255,255,255,0.25)",
             order: isMobile ? 2 : 1,
           }}>
