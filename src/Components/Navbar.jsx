@@ -870,7 +870,7 @@ export default function Navbar({ logo, user, onUserIconClick, onLogout, onNaviga
                             {event.title}
                           </div>
                           <div style={{ fontFamily: "Rajdhani,sans-serif", fontSize: 12, color: "#22c55e", marginTop: 4 }}>
-                            Upcoming Event
+                            Event
                           </div>
                         </div>
                       ))}
