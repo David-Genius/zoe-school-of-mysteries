@@ -1,13 +1,16 @@
 import { useState } from "react";
-import { registerUser, loginUser, resetPassword } from "./firebase";
+import { registerUser, loginUser, resetPassword, loginWithGoogle } from "./firebase";
 
 export default function AuthPage({ logo, onBack, onLogin }) {
-  const [mode,      setMode]      = useState("login");
-  const [form,      setForm]      = useState({ name:"", email:"", password:"", confirm:"" });
-  const [loading,   setLoading]   = useState(false);
-  const [success,   setSuccess]   = useState(false);
-  const [error,     setError]     = useState("");
-  const [resetSent, setResetSent] = useState(false);
+  const [mode,        setMode]        = useState("login");
+  const [form,        setForm]        = useState({ name:"", email:"", password:"", confirm:"" });
+  const [loading,     setLoading]     = useState(false);
+  const [googleLoading, setGoogleLoading] = useState(false);
+  const [success,     setSuccess]     = useState(false);
+  const [error,       setError]       = useState("");
+  const [resetSent,   setResetSent]   = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirm,  setShowConfirm]  = useState(false);
 
   const handle = (e) => { setError(""); setForm({ ...form, [e.target.name]: e.target.value }); };
 
@@ -19,6 +22,9 @@ export default function AuthPage({ logo, onBack, onLogin }) {
     "auth/invalid-email":          "Please enter a valid email address.",
     "auth/too-many-requests":      "Too many attempts. Please wait and try again.",
     "auth/network-request-failed": "Network error. Check your connection.",
+    "auth/popup-closed-by-user":   "Sign-in was cancelled.",
+    "auth/popup-blocked":          "Popup was blocked. Please allow popups and try again.",
+    "auth/cancelled-popup-request":"Sign-in was cancelled.",
   }[code] || "Something went wrong. Please try again.");
 
   const submit = async () => {
@@ -45,6 +51,27 @@ export default function AuthPage({ logo, onBack, onLogin }) {
       }), 1200);
     } catch (err) { setError(getErrMsg(err.code)); }
     finally { setLoading(false); }
+  };
+
+  const handleGoogleLogin = async () => {
+    setError("");
+    setGoogleLoading(true);
+    try {
+      const user = await loginWithGoogle();
+      const { getUserProfile } = await import("./firebase");
+      const profile = await getUserProfile(user.uid);
+      setSuccess(true);
+      setTimeout(() => onLogin?.({
+        name:  user.displayName || "Member",
+        email: user.email,
+        uid:   user.uid,
+        role:  profile?.role || "member",
+      }), 1200);
+    } catch (err) {
+      if (err.code !== "auth/popup-closed-by-user" && err.code !== "auth/cancelled-popup-request") {
+        setError(getErrMsg(err.code));
+      }
+    } finally { setGoogleLoading(false); }
   };
 
   const handleReset = async () => {
@@ -139,7 +166,26 @@ export default function AuthPage({ logo, onBack, onLogin }) {
         .back-btn:hover { color:#F5A800; }
 
         .social-btn { flex:1; padding:14px; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.1); border-radius:4px; cursor:pointer; font-family:'Rajdhani',sans-serif; font-size:14px; letter-spacing:1px; text-transform:uppercase; font-weight:600; color:rgba(255,255,255,0.6); display:flex; align-items:center; justify-content:center; gap:8px; transition:all 0.3s; }
-        .social-btn:hover { border-color:rgba(245,168,0,0.4); color:#fff; }
+        .social-btn:hover:not(:disabled) { border-color:rgba(245,168,0,0.4); color:#fff; }
+        .social-btn:disabled { opacity:0.5; cursor:not-allowed; }
+
+        .pw-wrap { position:relative; }
+        .pw-wrap .auth-input { padding-right:48px; }
+        .pw-toggle {
+          position:absolute;
+          right:14px;
+          top:50%;
+          transform:translateY(-50%);
+          background:none;
+          border:none;
+          cursor:pointer;
+          color:rgba(255,255,255,0.35);
+          display:flex;
+          align-items:center;
+          padding:4px;
+          transition:color 0.3s;
+        }
+        .pw-toggle:hover { color:#F5A800; }
 
         @media(max-width:768px) { .auth-left{display:none!important} .auth-right{width:100%!important;border-left:none!important} }
       `}</style>
@@ -201,7 +247,7 @@ export default function AuthPage({ logo, onBack, onLogin }) {
               <p style={{ fontFamily:"Cormorant Garamond,serif", fontSize:18, fontStyle:"italic", color:"rgba(255,255,255,0.4)", marginBottom:30 }}>Enter your email and we'll send a reset link.</p>
               {resetSent ? (
                 <div style={{ background:"rgba(34,197,94,0.08)", border:"1px solid rgba(34,197,94,0.25)", borderRadius:4, padding:"16px 20px", fontFamily:"Rajdhani,sans-serif", fontSize:16, color:"#22c55e" }}>
-                  ✓ Reset link sent to {form.email}. Check your inbox!
+                  ✓ Reset link sent to {form.email}. Check your inbox — and your spam/junk folder, since it can sometimes land there.
                 </div>
               ) : (
                 <div style={{ display:"flex", flexDirection:"column", gap:14 }}>
@@ -238,14 +284,111 @@ export default function AuthPage({ logo, onBack, onLogin }) {
               <div style={{ display:"flex", flexDirection:"column", gap:14 }}>
                 {mode==="signup" && <input className="auth-input" name="name" type="text" placeholder="Full Name *" value={form.name} onChange={handle} onKeyDown={e=>e.key==="Enter"&&submit()} />}
                 <input className="auth-input" name="email" type="email" placeholder="Email Address *" value={form.email} onChange={handle} onKeyDown={e=>e.key==="Enter"&&submit()} />
-                <input className="auth-input" name="password" type="password" placeholder="Password *" value={form.password} onChange={handle} onKeyDown={e=>e.key==="Enter"&&submit()} />
-                {mode==="signup" && <input className="auth-input" name="confirm" type="password" placeholder="Confirm Password *" value={form.confirm} onChange={handle} onKeyDown={e=>e.key==="Enter"&&submit()} />}
+                <div className="pw-wrap">
+  <input
+    className="auth-input"
+    name="password"
+    type={showPassword ? "text" : "password"}
+    placeholder="Password *"
+    value={form.password}
+    onChange={handle}
+    onKeyDown={(e) => e.key === "Enter" && submit()}
+  />
+
+  <button
+    type="button"
+    className="pw-toggle"
+    onClick={() => setShowPassword(!showPassword)}
+  >
+    {showPassword ? (
+      // Eye Off
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="22"
+        height="22"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+        strokeWidth="2"
+      >
+        <path d="M3 3l18 18" />
+        <path d="M10.58 10.58A2 2 0 0012 14a2 2 0 001.42-.58" />
+        <path d="M9.88 5.09A10.94 10.94 0 0112 5c5 0 9.27 3.11 11 7-0.73 1.64-1.94 3.08-3.46 4.2" />
+        <path d="M6.23 6.23C4.33 7.51 2.8 9.47 2 12c1.73 3.89 6 7 10 7 1.61 0 3.15-.4 4.5-1.09" />
+      </svg>
+    ) : (
+      // Eye
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="22"
+        height="22"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+        strokeWidth="2"
+      >
+        <path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z" />
+        <circle cx="12" cy="12" r="3" />
+      </svg>
+    )}
+  </button>
+</div>
+
+{mode === "signup" && (
+  <div className="pw-wrap">
+    <input
+      className="auth-input"
+      name="confirm"
+      type={showConfirm ? "text" : "password"}
+      placeholder="Confirm Password *"
+      value={form.confirm}
+      onChange={handle}
+      onKeyDown={(e) => e.key === "Enter" && submit()}
+    />
+
+    <button
+      type="button"
+      className="pw-toggle"
+      onClick={() => setShowConfirm(!showConfirm)}
+    >
+      {showConfirm ? (
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="22"
+          height="22"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          strokeWidth="2"
+        >
+          <path d="M3 3l18 18" />
+          <path d="M10.58 10.58A2 2 0 0012 14a2 2 0 001.42-.58" />
+          <path d="M9.88 5.09A10.94 10.94 0 0112 5c5 0 9.27 3.11 11 7-0.73 1.64-1.94 3.08-3.46 4.2" />
+          <path d="M6.23 6.23C4.33 7.51 2.8 9.47 2 12c1.73 3.89 6 7 10 7 1.61 0 3.15-.4 4.5-1.09" />
+        </svg>
+      ) : (
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="22"
+          height="22"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          strokeWidth="2"
+        >
+          <path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z" />
+          <circle cx="12" cy="12" r="3" />
+        </svg>
+      )}
+    </button>
+  </div>
+)}
                 {mode==="login" && (
                   <div style={{ textAlign:"right" }}>
                     <span onClick={() => { setMode("reset"); setError(""); }} style={{ fontFamily:"Rajdhani,sans-serif", fontSize:14, color:"#F5A800", cursor:"pointer", letterSpacing:1 }}>Forgot password?</span>
                   </div>
                 )}
-                <button className="auth-btn" onClick={submit} disabled={loading||!form.email||!form.password} style={{ marginTop:6 }}>
+                <button className="auth-btn" onClick={submit} disabled={loading||googleLoading||!form.email||!form.password} style={{ marginTop:6 }}>
                   {loading ? (mode==="login"?"Signing in...":"Creating account...") : (mode==="login"?"Sign In":"Create Account")}
                 </button>
               </div>
@@ -256,7 +399,19 @@ export default function AuthPage({ logo, onBack, onLogin }) {
                 <div style={{ flex:1, height:1, background:"rgba(255,255,255,0.08)" }} />
               </div>
 
-              <p style={{ fontFamily:"Rajdhani,sans-serif", fontSize:15, letterSpacing:1, color:"rgba(255,255,255,0.35)", textAlign:"center", marginTop:4 }}>
+              <div style={{ display:"flex", gap:12 }}>
+                <button className="social-btn" onClick={handleGoogleLogin} disabled={loading||googleLoading}>
+                  <svg width="18" height="18" viewBox="0 0 48 48">
+                    <path fill="#FFC107" d="M43.611,20.083H42V20H24v8h11.303c-1.649,4.657-6.08,8-11.303,8c-6.627,0-12-5.373-12-12s5.373-12,12-12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C12.955,4,4,12.955,4,24s8.955,20,20,20s20-8.955,20-20C44,22.659,43.862,21.35,43.611,20.083z"/>
+                    <path fill="#FF3D00" d="M6.306,14.691l6.571,4.819C14.655,15.108,18.961,12,24,12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C16.318,4,9.656,8.337,6.306,14.691z"/>
+                    <path fill="#4CAF50" d="M24,44c5.166,0,9.86-1.977,13.409-5.192l-6.19-5.238C29.211,35.091,26.715,36,24,36c-5.202,0-9.619-3.317-11.283-7.946l-6.522,5.025C9.505,39.556,16.227,44,24,44z"/>
+                    <path fill="#1976D2" d="M43.611,20.083H42V20H24v8h11.303c-0.792,2.237-2.231,4.166-4.087,5.571c0.001-0.001,0.002-0.001,0.003-0.002l6.19,5.238C36.971,39.205,44,34,44,24C44,22.659,43.862,21.35,43.611,20.083z"/>
+                  </svg>
+                  {googleLoading ? "Connecting..." : "Continue with Google"}
+                </button>
+              </div>
+
+              <p style={{ fontFamily:"Rajdhani,sans-serif", fontSize:15, letterSpacing:1, color:"rgba(255,255,255,0.35)", textAlign:"center", marginTop:22 }}>
                 {mode==="login"?"Don't have an account? ":"Already have an account? "}
                 <span onClick={() => { setMode(mode==="login"?"signup":"login"); setError(""); }} style={{ color:"#F5A800", cursor:"pointer", fontWeight:700 }}>
                   {mode==="login"?"Sign up free":"Sign in"}

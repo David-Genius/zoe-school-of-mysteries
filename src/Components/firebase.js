@@ -6,6 +6,7 @@
 // STEP 4: Copy your config values below
 // STEP 5: In Firebase Console:
 //   → Authentication → Get Started → Enable Email/Password
+//   → Authentication → Sign-in method → Enable Google
 //   → Firestore Database → Create Database → Start in test mode
 // ─────────────────────────────────────────────────────
 // import { getFirestore } from "firebase/firestore";
@@ -19,6 +20,8 @@ import {
   getAuth,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  signInWithPopup,
+  GoogleAuthProvider,
   signOut,
   onAuthStateChanged,
   updateProfile,
@@ -57,6 +60,8 @@ const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
 export const db   = getFirestore(app);
 export const storage = getStorage(app);
+
+const googleProvider = new GoogleAuthProvider();
 
 // ─────────────────────────────────────────────────────
 // AUTH FUNCTIONS
@@ -139,6 +144,52 @@ export async function loginUser({ email, password }) {
   return cred.user;
 }
 
+/** Sign in / sign up with Google */
+export async function loginWithGoogle() {
+  const cred = await signInWithPopup(auth, googleProvider);
+  const user = cred.user;
+
+  // SAFE: wrap Firestore calls so they don't break login
+  try {
+    const userRef = doc(db, "users", user.uid);
+    const snap = await getDoc(userRef);
+
+    if (snap.exists()) {
+      await updateDoc(userRef, {
+        lastSeen: serverTimestamp(),
+      });
+      await addDoc(collection(db, "activity"), {
+        uid: user.uid,
+        type: "login",
+        description: "User signed in with Google",
+        timestamp: serverTimestamp(),
+      });
+    } else {
+      await setDoc(userRef, {
+        uid: user.uid,
+        name: user.displayName || "",
+        email: user.email,
+        role: "member",
+        status: "active",
+        createdAt: serverTimestamp(),
+        lastSeen: serverTimestamp(),
+        givingTotal: 0,
+        avatar: (user.displayName || user.email || "?").charAt(0).toUpperCase(),
+        provider: "google",
+      });
+      await addDoc(collection(db, "activity"), {
+        uid: user.uid,
+        type: "account_created",
+        description: "New account created with Google",
+        timestamp: serverTimestamp(),
+      });
+    }
+  } catch (err) {
+    console.log("Firestore failed but Google login still works:", err);
+  }
+
+  return user;
+}
 
 /** Sign out */
 export async function logoutUser() {
